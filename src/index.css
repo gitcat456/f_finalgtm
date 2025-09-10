@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Minimal global layout fixes */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ✅ Prevent navbar/footer from leaving white margin on the right */
+* {
+  box-sizing: inherit;
+}
+
+/* ✅ Make sure app root always fills the screen */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
