@@ -51,7 +51,7 @@ const Navbar = () => {
     },
     { label: 'Events', to: '/events' },
     { label: 'Locations', to: '/locations' },
-    { label: 'Social Links', to: '/socials' },
+    { label: 'Social Links', to: '/gtm_socials' },
   ];
 
   return (
