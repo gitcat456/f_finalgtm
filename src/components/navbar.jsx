@@ -1,25 +1,58 @@
+// src/components/Navbar.jsx
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItemButton, ListItemText, Box, Container, Divider } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItemButton, ListItemText, Box, Container, Divider, Menu, MenuItem, Collapse } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { NavLink } from 'react-router-dom';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import { NavLink, useNavigate } from 'react-router-dom';
 import off_logo from '../assets/off_logo.png';
-
-
-const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'About Us', to: '/about' },
-  { label: 'Events', to: '/events' },
-  { label: 'Locations', to: '/locations' },
-  { label: 'Social Links', to: '/socials' },
-];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [aboutMenuAnchor, setAboutMenuAnchor] = useState(null);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => () => {
     setMobileOpen(open);
   };
+
+  const handleAboutMenuOpen = (event) => {
+    setAboutMenuAnchor(event.currentTarget);
+  };
+
+  const handleAboutMenuClose = () => {
+    setAboutMenuAnchor(null);
+  };
+
+  const handleMobileAboutToggle = () => {
+    setMobileAboutOpen(!mobileAboutOpen);
+  };
+
+  const handleAboutOptionClick = (section) => {
+    navigate(`/about#${section}`);
+    setAboutMenuAnchor(null);
+    setMobileOpen(false);
+    setMobileAboutOpen(false);
+  };
+
+  const navLinks = [
+    { label: 'Home', to: '/' },
+    { 
+      label: 'About Us', 
+      to: '/about',
+      hasSubmenu: true,
+      options: [
+        { label: 'Our Mission & Vision', section: 'mission' },
+        { label: 'Our Clergy', section: 'clergy' },
+        { label: 'Our Branches', section: 'branches' },
+      ]
+    },
+    { label: 'Events', to: '/events' },
+    { label: 'Locations', to: '/locations' },
+    { label: 'Social Links', to: '/socials' },
+  ];
 
   return (
     <>
@@ -34,7 +67,7 @@ const Navbar = () => {
           opacity: 0.95,
           color: 'white',
           py: 1,
-          zIndex: (theme) => theme.zIndex.appBar - 1, // Behind navbar
+          zIndex: (theme) => theme.zIndex.appBar - 1,
         }}
       >
         <Container maxWidth="lg">
@@ -50,9 +83,9 @@ const Navbar = () => {
         color="default" 
         elevation={1}
         sx={{ 
-          top: 0, // Stick to top
+          top: 0,
           zIndex: (theme) => theme.zIndex.appBar,
-          mt: '40px', // Space for top banner
+          mt: '40px',
         }}
       >
         <Container maxWidth="lg">
@@ -89,28 +122,92 @@ const Navbar = () => {
 
             {/* Desktop Links */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-              {navLinks.map(({ label, to }) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  style={({ isActive }) => ({
-                    textDecoration: 'none',
-                    color: isActive ? '#1976d2' : 'inherit',
-                    fontWeight: isActive ? 600 : 400,
-                    padding: '8px 12px',
-                    borderRadius: '4px',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      backgroundColor: 'rgba(25, 118, 210, 0.08)',
-                    },
-                  })}
-                >
-                  {label}
-                </NavLink>
+              {navLinks.map((item) => (
+                item.hasSubmenu ? (
+                  <Box key={item.to}>
+                    <div
+                      onClick={handleAboutMenuOpen}
+                      style={{
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        fontWeight: 400,
+                        padding: '8px 12px',
+                        borderRadius: '4px',
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                    >
+                      {item.label}
+                      <svg 
+                        className="ml-1 h-4 w-4" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                    
+                    <Menu
+                      anchorEl={aboutMenuAnchor}
+                      open={Boolean(aboutMenuAnchor)}
+                      onClose={handleAboutMenuClose}
+                      MenuListProps={{
+                        'aria-labelledby': 'about-menu-button',
+                      }}
+                      PaperProps={{
+                        elevation: 3,
+                        sx: {
+                          mt: 1.5,
+                          minWidth: 240,
+                          borderRadius: 2,
+                          overflow: 'visible',
+                          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                        }
+                      }}
+                    >
+                      {item.options.map((option) => (
+                        <MenuItem 
+                          key={option.section} 
+                          onClick={() => handleAboutOptionClick(option.section)}
+                          sx={{
+                            py: 1.5,
+                            px: 2,
+                            '&:hover': {
+                              backgroundColor: 'rgba(25, 118, 210, 0.08)',
+                            },
+                          }}
+                        >
+                          <Box>
+                            <Typography variant="body1" fontWeight={500}>
+                              {option.label}
+                            </Typography>
+                          </Box>
+                        </MenuItem>
+                      ))}
+                    </Menu>
+                  </Box>
+                ) : (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    style={({ isActive }) => ({
+                      textDecoration: 'none',
+                      color: isActive ? '#1976d2' : 'inherit',
+                      fontWeight: isActive ? 600 : 400,
+                      padding: '8px 12px',
+                      borderRadius: '4px',
+                      transition: 'all 0.3s ease',
+                    })}
+                  >
+                    {item.label}
+                  </NavLink>
+                )
               ))}
             </Box>
 
-            
             <IconButton
               edge="end"
               color="inherit"
@@ -140,7 +237,6 @@ const Navbar = () => {
             background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%)',
           }}
         >
-          
           <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
             <Typography variant="h6" fontWeight={700}>
               GTM Ministries
@@ -154,37 +250,67 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <List>
-            {navLinks.map(({ label, to }) => (
-              <ListItemButton
-                key={to}
-                component={NavLink}
-                to={to}
-                onClick={toggleDrawer(false)}
-                sx={{
-                  borderRadius: 1,
-                  mb: 0.5,
-                  '&:hover': {
-                    backgroundColor: 'rgba(25, 118, 210, 0.12)',
-                  },
-                  '&.active': {
-                    backgroundColor: 'primary.main',
-                    color: 'white',
-                    fontWeight: 600,
-                  },
-                }}
-              >
-                <ListItemText 
-                  primary={label} 
-                  primaryTypographyProps={{ fontWeight: 500 }} 
-                />
-              </ListItemButton>
+            {navLinks.map((item) => (
+              item.hasSubmenu ? (
+                <Box key={item.to}>
+                  <ListItemButton
+                    onClick={handleMobileAboutToggle}
+                    sx={{
+                      borderRadius: 1,
+                      mb: 0.5,
+                    }}
+                  >
+                    <ListItemText 
+                      primary={item.label} 
+                      primaryTypographyProps={{ fontWeight: 500 }} 
+                    />
+                    {mobileAboutOpen ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+                  <Collapse in={mobileAboutOpen} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {item.options.map((option) => (
+                        <ListItemButton
+                          key={option.section}
+                          sx={{ pl: 4, borderRadius: 1, mb: 0.5 }}
+                          onClick={() => handleAboutOptionClick(option.section)}
+                        >
+                          <ListItemText 
+                            primary={option.label} 
+                            primaryTypographyProps={{ fontWeight: 400 }} 
+                          />
+                        </ListItemButton>
+                      ))}
+                    </List>
+                  </Collapse>
+                </Box>
+              ) : (
+                <ListItemButton
+                  key={item.to}
+                  component={NavLink}
+                  to={item.to}
+                  onClick={toggleDrawer(false)}
+                  sx={{
+                    borderRadius: 1,
+                    mb: 0.5,
+                    '&.active': {
+                      backgroundColor: 'primary.main',
+                      color: 'white',
+                      fontWeight: 600,
+                    },
+                  }}
+                >
+                  <ListItemText 
+                    primary={item.label} 
+                    primaryTypographyProps={{ fontWeight: 500 }} 
+                  />
+                </ListItemButton>
+              )
             ))}
           </List>
 
           {/* Spacer to push verse to bottom */}
           <Box sx={{ flexGrow: 1 }} />
 
-          
           <Box sx={{ p: 2, bgcolor: '#f0f4f8', borderRadius: 1, mt: 2 }}>
             <Typography
               variant="body2"
