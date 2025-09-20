@@ -47,7 +47,7 @@ const Home = () => {
       <section
         className="bg-cover bg-center bg-no-repeat h-[90vh] flex items-center justify-center text-white px-4"
         style={{
-          backgroundImage: `url(/vite.svg)`,
+          backgroundImage: `url(/home.jpg)`,
         }}
       >
         <div className="bg-black bg-opacity-60 p-8 rounded-lg max-w-3xl text-center">
