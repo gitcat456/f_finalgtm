@@ -23,7 +23,7 @@ const linkMap = {
   'About Us': '/about',
   'Events': '/events',
   'Locations': '/locations',
-  'Social Links': '/socials'
+  'Social Links': '/gtm_socials'
 };
 
 const Footer = () => {
