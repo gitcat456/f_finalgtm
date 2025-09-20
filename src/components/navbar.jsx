@@ -3,6 +3,8 @@ import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItemButton, 
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { NavLink } from 'react-router-dom';
+import off_logo from '../assets/off_logo.png';
+
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -67,7 +69,7 @@ const Navbar = () => {
                 }}
               >
                 <img
-                  src="/off_logo.png"
+                  src={off_logo}
                   alt="GTM Logo"
                   style={{
                     width: 46,
