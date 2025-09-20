@@ -11,7 +11,7 @@ import {
 } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 
-const quickLinks = ['Home', 'About Us', 'Sermons', 'Locations', 'Live'];
+const quickLinks = ['Home', 'About Us', 'Locations', 'Events', 'Social Links'];
 const serviceTimes = [
   { day: 'Saturday', time: '9:00 AM & 1:00 PM' },
   { day: 'Wednesday', time: '6:00 PM' },
