@@ -67,7 +67,7 @@ const Navbar = () => {
                 }}
               >
                 <img
-                  src="/vite.svg"
+                  src="/off_logo.png"
                   alt="GTM Logo"
                   style={{
                     width: 46,
