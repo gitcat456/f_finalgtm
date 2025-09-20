@@ -6,10 +6,10 @@ import { NavLink } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Events', to: '/events' },
   { label: 'Locations', to: '/locations' },
-  { label: 'Sermons', to: '/sermons' },
-  { label: 'Live', to: '/livestream' },
+  { label: 'Social Links', to: '/socials' },
 ];
 
 const Navbar = () => {
