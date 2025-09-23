@@ -196,8 +196,9 @@ const Navbar = () => {
                     to={item.to}
                     style={({ isActive }) => ({
                       textDecoration: 'none',
-                      color: isActive ? '#1976d2' : 'inherit',
-                      fontWeight: isActive ? 600 : 400,
+                     color: isActive ? '#3730a3' : 'inherit',
+                     fontWeight: isActive ? 600 : 400,
+
                       padding: '8px 12px',
                       borderRadius: '4px',
                       transition: 'all 0.3s ease',
