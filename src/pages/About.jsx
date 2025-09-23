@@ -21,17 +21,17 @@ const AboutPage = () => {
       id: 1,
       name: "Gibson Onunga",
       title: "Bishop",
-      bio: "With over 20 years of pastoral experience, Pastor John brings wisdom and compassion to our congregation. He holds a Doctorate in Theology from Nairobi University.",
+      bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation. He holds a Doctorate in Theology from Nairobi University.",
       img: pas,
     },
     {
       id: 2,
       name: "Teresa Owiti",
       title: "Assistant Bishop",
-      bio: "Pastor Justus leads our youth and community outreach programs. He's passionate about empowering young people to live out their faith in practical ways.",
+      bio: "Assistant Bishop Teresa leads our youth and community outreach programs. He's passionate about empowering young people to live out their faith in practical ways.",
       img: past,
-    },
-    {
+    }
+    /*{
       id: 3,
       name: "Justus Omundo",
       title: "Pastor",
@@ -44,7 +44,7 @@ const AboutPage = () => {
       title: "Pastor",
       bio: "Pastor Grace brings creativity and energy to our children's programs. She holds a degree in Early Childhood Education and has a gift for making biblical truths accessible.",
       img: pastor
-    }
+    }*/
   ];
   
   // Branches data
