@@ -13,31 +13,31 @@ const Home = () => {
     },
     {
       title: "Youth Service",
-      time: "Saturday 7:00 AM - 9:00 AM",
+      time: "Saturday 8:30 AM - 9:15 AM",
       description: "Dynamic worship and relevant teaching for youth and young adults",
       icon: <Groups sx={{ fontSize: 40, color: '#f50057' }} />
     },
     {
       title: "Bible Education",
-      time: "Wednesdays 7:00 PM - 8:30 PM",
+      time: "9:45 AM - 10:45 AM",
       description: "Deep dive into Scripture with our mid-week Bible study",
       icon: <LibraryBooks sx={{ fontSize: 40, color: '#ff9800' }} />
     },
     {
       title: "Prayer & Worship",
-      time: "Tuesdays 6:30 PM - 7:30 PM",
+      time: "11:30 AM - 12:00 AM",
       description: "Corporate prayer and intimate worship time",
       icon: <WavingHand sx={{ fontSize: 40, color: '#4caf50' }} />
     },
     {
       title: "Announcements",
-      time: "Sundays 9:45 AM",
+      time: "10:50 AM - 11:00 AM",
       description: "Weekly updates and church family news",
       icon: <Mic sx={{ fontSize: 40, color: '#9c27b0' }} />
     },
     {
       title: "Offerings",
-      time: "During Sunday Service",
+      time: "11:10 AM - 11:30 AM",
       description: "Opportunity to give and support ministry work",
       icon: <VolunteerActivism sx={{ fontSize: 40, color: '#009688' }} />
     }
