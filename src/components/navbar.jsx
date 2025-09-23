@@ -46,7 +46,7 @@ const Navbar = () => {
       options: [
         { label: 'Our Mission & Vision', section: 'mission' },
         { label: 'Our Clergy', section: 'clergy' },
-        { label: 'Our Branches', section: 'branches' },
+        { label: 'Founders', section: 'founders' },
       ]
     },
     { label: 'Events', to: '/events' },
