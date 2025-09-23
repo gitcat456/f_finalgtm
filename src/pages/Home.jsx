@@ -5,15 +5,15 @@ import home from '../assets/home.jpg';
 const Home = () => {
   const serviceTimes = [
     {
-      title: "Sunday Worship Service",
-      time: "10:00 AM - 12:00 PM",
+      title: "Saturday Worship Service",
+      time: "9:00 AM - 1:00 PM",
       description: "Join us for our main worship service with inspiring music and biblical teaching",
-      icon: <Church sx={{ fontSize: 40, color: '#3f51b5' }} />,
+      icon: <Church sx={{ fontSize: 40, color: '#3730a3' }} />,
       highlight: true
     },
     {
       title: "Youth Service",
-      time: "Fridays 6:00 PM - 8:00 PM",
+      time: "Saturday 7:00 AM - 9:00 AM",
       description: "Dynamic worship and relevant teaching for youth and young adults",
       icon: <Groups sx={{ fontSize: 40, color: '#f50057' }} />
     },
@@ -67,7 +67,7 @@ const Home = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Service Times</h2>
+            <h2 className="text-4xl font-bold text-indigo-800 mb-4">Service Times</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Join us as we gather to worship, learn, and grow together in Christ
             </p>
