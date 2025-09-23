@@ -5,13 +5,6 @@ import home from '../assets/home.jpg';
 const Home = () => {
   const serviceTimes = [
     {
-      title: "Saturday Worship Service",
-      time: "9:00 AM - 1:00 PM",
-      description: "Join us for our main worship service with inspiring music and biblical teaching",
-      icon: <Church sx={{ fontSize: 40, color: '#3730a3' }} />,
-      highlight: true
-    },
-    {
       title: "Youth Service",
       time: "Saturday 8:30 AM - 9:15 AM",
       description: "Dynamic worship and relevant teaching for youth and young adults",
@@ -24,12 +17,6 @@ const Home = () => {
       icon: <LibraryBooks sx={{ fontSize: 40, color: '#ff9800' }} />
     },
     {
-      title: "Prayer & Worship",
-      time: "11:30 AM - 12:00 AM",
-      description: "Corporate prayer and intimate worship time",
-      icon: <WavingHand sx={{ fontSize: 40, color: '#4caf50' }} />
-    },
-    {
       title: "Announcements",
       time: "10:50 AM - 11:00 AM",
       description: "Weekly updates and church family news",
@@ -40,6 +27,19 @@ const Home = () => {
       time: "11:10 AM - 11:30 AM",
       description: "Opportunity to give and support ministry work",
       icon: <VolunteerActivism sx={{ fontSize: 40, color: '#009688' }} />
+    },
+    {
+      title: "Prayer & Worship",
+      time: "11:30 AM - 12:00 AM",
+      description: "Corporate prayer and intimate worship time",
+      icon: <WavingHand sx={{ fontSize: 40, color: '#4caf50' }} />
+    },
+    {
+      title: "Saturday Worship Service",
+      time: "12:00 NOON - 1:00 PM",
+      description: "Join us for our main worship service with inspiring music and biblical teaching",
+      icon: <Church sx={{ fontSize: 40, color: '#3730a3' }} />,
+      highlight: true
     }
   ];
 
