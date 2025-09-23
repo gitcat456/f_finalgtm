@@ -114,9 +114,10 @@ const Navbar = () => {
                     boxShadow: 'none',
                   }}
                 />
-                <Typography variant="h6" fontWeight={700}>
+                <Typography variant="h6" fontWeight={700} className="text-indigo-800">
                   GTM Ministries
                 </Typography>
+
               </Box>
             </NavLink>
 
@@ -293,7 +294,7 @@ const Navbar = () => {
                     borderRadius: 1,
                     mb: 0.5,
                     '&.active': {
-                      backgroundColor: 'primary.main',
+                      backgroundColor: '#3730a3',
                       color: 'white',
                       fontWeight: 600,
                     },
@@ -318,7 +319,7 @@ const Navbar = () => {
               sx={{
                 fontFamily: 'Georgia, serif',
                 fontStyle: 'italic',
-                color: 'primary.dark',
+                color: '#3730a3',
                 lineHeight: 1.6,
               }}
             >
