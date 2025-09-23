@@ -187,7 +187,7 @@ const AboutPage = () => {
               className="max-w-5xl mx-auto"
             >
               <div className="mb-16 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Mission & Vision</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">About Us</h2>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   Grace and Truth Ministries Church is a Pentecostal church that practices a Pentecostal style of worship.
                   Our Sabbath services are a blend of traditional and contemporary worship songs and provide opportunity
@@ -205,7 +205,7 @@ const AboutPage = () => {
                 >
                   <div className="overflow-hidden rounded-2xl shadow-xl border-8 border-white transform rotate-1">
                     <img 
-                      src="https://images.unsplash.com/photo-1513326738677-b964603b136d?auto=format&fit=crop&w=800&q=80" 
+                      src="https://t3.ftcdn.net/jpg/03/30/32/28/240_F_330322889_loyXDVKHBntIFBXuLT6LvqDxmHU9BzZn.jpg" 
                       alt="Church Mission" 
                       className="w-full h-80 object-cover"
                     />
@@ -217,7 +217,7 @@ const AboutPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <div className="p-1 bg-gradient-to-r from-indigo-500 to-purple-900 rounded-2xl">
+                  <div >
                     <div className="bg-white p-6 rounded-xl">
                       <div className="flex items-center mb-4">
                         <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
@@ -250,7 +250,7 @@ const AboutPage = () => {
                 >
                   <div className="overflow-hidden rounded-2xl shadow-xl border-8 border-white transform -rotate-1">
                     <img 
-                      src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" 
+                      src="https://wvusstatic.com/www/uploads/2019/02/D200-0972-32-850x567.jpg" 
                       alt="Church Vision" 
                       className="w-full h-80 object-cover"
                     />
@@ -262,7 +262,7 @@ const AboutPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <div className="p-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl">
+                  <div>
                     <div className="bg-white p-6 rounded-xl">
                       <div className="flex items-center mb-4">
                         <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
@@ -285,7 +285,7 @@ const AboutPage = () => {
                 </motion.div>
               </div>
               
-              {/* History Section */}
+              {/* History Section 
               <motion.div 
                 className="mt-20 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8"
                 initial={{ opacity: 0, y: 30 }}
@@ -309,9 +309,9 @@ const AboutPage = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div>*/}
             </motion.div>
-          )}
+          )} 
 
           {/* Clergy Section */}
           {activeSection === 'clergy' && (
