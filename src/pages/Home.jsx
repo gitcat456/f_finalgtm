@@ -1,45 +1,46 @@
 
 import { Church, Groups, LibraryBooks, Mic, VolunteerActivism, WavingHand, AccessTime, CalendarToday } from '@mui/icons-material';
 import home from '../assets/home.jpg';
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const serviceTimes = [
     {
-      title: "Sunday Worship Service",
-      time: "10:00 AM - 12:00 PM",
-      description: "Join us for our main worship service with inspiring music and biblical teaching",
-      icon: <Church sx={{ fontSize: 40, color: '#3f51b5' }} />,
-      highlight: true
-    },
-    {
-      title: "Youth Service",
-      time: "Fridays 6:00 PM - 8:00 PM",
+      title: "Children & Youth Service",
+      time: "Saturday 8:30 AM - 9:15 AM",
       description: "Dynamic worship and relevant teaching for youth and young adults",
       icon: <Groups sx={{ fontSize: 40, color: '#f50057' }} />
     },
     {
       title: "Bible Education",
-      time: "Wednesdays 7:00 PM - 8:30 PM",
+      time: "9:45 AM - 10:45 AM",
       description: "Deep dive into Scripture with our mid-week Bible study",
       icon: <LibraryBooks sx={{ fontSize: 40, color: '#ff9800' }} />
     },
     {
-      title: "Prayer & Worship",
-      time: "Tuesdays 6:30 PM - 7:30 PM",
-      description: "Corporate prayer and intimate worship time",
-      icon: <WavingHand sx={{ fontSize: 40, color: '#4caf50' }} />
-    },
-    {
       title: "Announcements",
-      time: "Sundays 9:45 AM",
+      time: "10:50 AM - 11:00 AM",
       description: "Weekly updates and church family news",
       icon: <Mic sx={{ fontSize: 40, color: '#9c27b0' }} />
     },
     {
       title: "Offerings",
-      time: "During Sunday Service",
+      time: "11:10 AM - 11:30 AM",
       description: "Opportunity to give and support ministry work",
       icon: <VolunteerActivism sx={{ fontSize: 40, color: '#009688' }} />
+    },
+    {
+      title: "Prayer & Worship",
+      time: "11:30 AM - 12:00 AM",
+      description: "Corporate prayer and intimate worship time",
+      icon: <WavingHand sx={{ fontSize: 40, color: '#4caf50' }} />
+    },
+    {
+      title: "Saturday Worship Service",
+      time: "12:00 NOON - 1:00 PM",
+      description: "Join us for our main worship service with inspiring music and biblical teaching",
+      icon: <Church sx={{ fontSize: 40, color: '#3730a3' }} />,
+      highlight: true
     }
   ];
 
@@ -67,7 +68,7 @@ const Home = () => {
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Service Times</h2>
+            <h2 className="text-4xl font-bold text-indigo-800 mb-4">Service Times</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Join us as we gather to worship, learn, and grow together in Christ
             </p>
@@ -105,8 +106,8 @@ const Home = () => {
             ))}
           </div>
 
-          {/* Additional Information */}
-          <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl p-8 text-white text-center">
+          {/* Additional Information 
+          <div className="mt-16 bg-gradient-to-r from-indigo-600 to-purple-700 rounded-2xl p-8 text-white text-center">
             <h3 className="text-2xl font-bold mb-4">Plan Your Visit</h3>
             <p className="text-lg mb-6 max-w-3xl mx-auto">
               We'd love to welcome you to our church family. All are welcome regardless of background or belief.
@@ -114,7 +115,12 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
               <div className="bg-white bg-opacity-10 p-4 rounded-lg">
                 <h4 className="font-semibold mb-2">Location</h4>
-                <p className="text-blue-100">123 Church Street<br />Nairobi, Kenya</p>
+                <Link
+                  to="/locations"
+                  className="text-blue-100 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-medium"
+                >
+                  View Locations
+                </Link>
               </div>
               <div className="bg-white bg-opacity-10 p-4 rounded-lg">
                 <h4 className="font-semibold mb-2">Contact</h4>
@@ -125,7 +131,7 @@ const Home = () => {
                 <p className="text-blue-100">Available during Sunday service<br />Ages 3-12</p>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </section>
     </>

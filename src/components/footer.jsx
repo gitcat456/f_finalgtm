@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 
 const quickLinks = ['Home', 'About Us', 'Events', 'Locations', 'Social Links'];
 const serviceTimes = [
-  { day: 'Saturday', time: '9:00 AM & 1:00 PM' },
+  { day: 'Saturday', time: '9:00 AM - 1:00 PM' },
   { day: 'Wednesday', time: '6:00 PM' },
   { day: 'Friday Verspers', time: '6:00 PM' }
 ];

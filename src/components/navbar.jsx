@@ -46,7 +46,7 @@ const Navbar = () => {
       options: [
         { label: 'Our Mission & Vision', section: 'mission' },
         { label: 'Our Clergy', section: 'clergy' },
-        { label: 'Our Branches', section: 'branches' },
+        { label: 'Founders', section: 'founders' },
       ]
     },
     { label: 'Events', to: '/events' },
@@ -114,9 +114,10 @@ const Navbar = () => {
                     boxShadow: 'none',
                   }}
                 />
-                <Typography variant="h6" fontWeight={700}>
+                <Typography variant="h6" fontWeight={700} className="text-indigo-800">
                   GTM Ministries
                 </Typography>
+
               </Box>
             </NavLink>
 
@@ -195,8 +196,9 @@ const Navbar = () => {
                     to={item.to}
                     style={({ isActive }) => ({
                       textDecoration: 'none',
-                      color: isActive ? '#1976d2' : 'inherit',
-                      fontWeight: isActive ? 600 : 400,
+                     color: isActive ? '#3730a3' : 'inherit',
+                     fontWeight: isActive ? 600 : 400,
+
                       padding: '8px 12px',
                       borderRadius: '4px',
                       transition: 'all 0.3s ease',
@@ -293,7 +295,7 @@ const Navbar = () => {
                     borderRadius: 1,
                     mb: 0.5,
                     '&.active': {
-                      backgroundColor: 'primary.main',
+                      backgroundColor: '#3730a3',
                       color: 'white',
                       fontWeight: 600,
                     },
@@ -318,7 +320,7 @@ const Navbar = () => {
               sx={{
                 fontFamily: 'Georgia, serif',
                 fontStyle: 'italic',
-                color: 'primary.dark',
+                color: '#3730a3',
                 lineHeight: 1.6,
               }}
             >

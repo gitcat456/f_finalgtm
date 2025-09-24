@@ -47,7 +47,7 @@ const Event = () => {
     },
     {
       id: 2,
-      status: 'ongoing',
+      status: 'past',
       title: "Camp Meeting 2025",
       subtitle: "LET THE WIND BLOW",
       scripture: "EZEKIEL 37:9",
@@ -59,7 +59,7 @@ const Event = () => {
       note: "The program on Saturday 16th will start at 9:00am EAT.",
       monthYear: "AUGUST, 2025",
       tag: "ALL ARE WELCOMED",
-      vision: "In harmony with Bible revelation, Seventh-day Adventists see as the climax of God's plan the restoration of all His creation to full harmony with His perfect will and righteousness.",
+      vision: "Empowered by the Spirit of God, we envision a gathering where hearts are revived, dry bones live again, and the breath of the Lord brings renewal to every soul. Guided by the theme ‘Let the Wind Blow’ (Ezekiel 37:9), this camp meeting seeks to awaken spiritual passion, ignite fresh fire for mission, and release a mighty move of the Holy Spirit that transforms lives, families, and communities for the glory of God.",
       mission: "Make disciples of Jesus Christ who live as His loving witnesses and proclaim to all people the everlasting gospel of the Three Angels' Messages in preparation for His soon return (Matt 28:18-20, Acts 1:8, Rev 14:6-12).",
       image: campPoster,
     },
