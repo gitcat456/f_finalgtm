@@ -8,11 +8,16 @@ import pas from "../assets/Bishop.jpg";
 import past from "../assets/p.Rose.jpg";
 import pasto from "../assets/p.James.jpg";
 import pastor from "../assets/p.Dede.jpg";
+import pdan from "../assets/pdan.jpg";
+import pSusan from "../assets/pSusan.jpg";
+import matharedp from "../assets/matharedp.jpg";
+import { Call as PhoneIcon } from '@mui/icons-material';
 
 const BranchesPage = () => {
   // Pastor images mapping
   const pastorImages = {
-    "Pastor Dancun Ongoro": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+    "Pastor Dancun Ongoro": pdan,
+    "Pastor Susan Omondi": pSusan,
     "Pastor Rosemary": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
     "Pastor Lilian": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
     "Pastor Fred Dede": pastor,
@@ -35,9 +40,12 @@ const BranchesPage = () => {
       id: 1,
       name: "Mathare Church",
       location: "Mathare 4A, Nairobi",
-      pastor: "Pastor Dancun Ongoro",
+      pastor1: "Pastor Dancun Ongoro",
+      contact1: "+254 714 707462",
+      pastor2: "Pastor Susan Omondi",
+      contact2: "+254 726 327537",
       services: "Saturday: 9am to 1pm",
-      img: "https://images.unsplash.com/photo-1515586838455-8f8f940d6853?auto=format&fit=crop&w=800&q=80"
+      img: matharedp
     },
     {
       id: 2,
@@ -176,7 +184,7 @@ const BranchesPage = () => {
           className="max-w-6xl mx-auto"
         >
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Locations</h2>
+            <h2 className="text-3xl md:text-4xl font-medium text-indigo-800 mb-4">Our Locations</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We have multiple branches across the country. Find one near you and join our worship community.
             </p>
@@ -222,19 +230,34 @@ const BranchesPage = () => {
                   
                   <div className="border-t pt-4">
                     <h4 className="font-bold text-gray-800 mb-3">Pastor</h4>
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 rounded-full overflow-hidden mr-3 border-2 border-indigo-500 flex-shrink-0">
-                        <img 
-                          src={getPastorImage(branch.pastor)} 
-                          alt={branch.pastor}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <p className="text-gray-600">{branch.pastor}</p>
+                    <div className="flex flex-col space-y-4 ">
+                      {[branch.pastor1, branch.pastor2].map((pastor, index) => (
+                        <div key={index} className="flex items-center">
+                          <div className="w-12 h-12 rounded-full overflow-hidden mr-3 border-2 border-indigo-500 flex-shrink-0">
+                            <img 
+                              src={getPastorImage(pastor)} 
+                              alt={pastor}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div>
+                            <p className="text-gray-600">{pastor}</p>
+                            <div className="flex items-center mt-1">
+                              <PhoneIcon sx={{ color: '#6366F1', fontSize: '18px', mr: 1 }} />
+                              <span className="text-gray-600 text-sm">
+                                {index === 0 ? branch.contact1 : branch.contact2}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                   
-                  <button className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
+                  <button 
+                    className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition"
+                    onClick={() => alert('Feature coming soon!')}
+                  >
                     Visit This Location
                   </button>
                 </div>
