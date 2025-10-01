@@ -21,7 +21,7 @@ const SocialsPage = () => {
         </svg>
       ),
       description: 'Follow us on Facebook for daily inspiration, event updates, and live streams of our services.',
-      link: 'https://facebook.com/GraceAndTruthMinistries',
+      link: 'https://www.facebook.com/profile.php?id=100064719998736',
       actionText: 'Follow our Page',
       color: 'bg-blue-600 hover:bg-blue-700'
     },
@@ -34,7 +34,7 @@ const SocialsPage = () => {
         </svg>
       ),
       description: 'Subscribe to our YouTube channel for sermon recordings, worship sessions, and inspirational messages.',
-      link: 'https://youtube.com/c/GraceAndTruthMinistries',
+      link: 'https://www.youtube.com/@graceandtruthministriesglobal',
       actionText: 'Subscribe',
       color: 'bg-red-600 hover:bg-red-700'
     },
@@ -47,9 +47,9 @@ const SocialsPage = () => {
         </svg>
       ),
       description: 'Join our youth WhatsApp group for fellowship, discussions, and event coordination.',
-      whatsappNumber: '+254712345678',
-      groupCode: 'YOUTH2023',
-      actionText: 'Join Group',
+      // REPLACE THIS WITH YOUR ACTUAL YOUTH GROUP LINK
+      link: 'https://chat.whatsapp.com/YOUR_ACTUAL_YOUTH_GROUP_LINK_HERE',
+      actionText: 'Join Youth Group',
       color: 'bg-green-600 hover:bg-green-700',
       isWhatsApp: true
     },
@@ -62,9 +62,9 @@ const SocialsPage = () => {
         </svg>
       ),
       description: 'Join our general conference WhatsApp group for church-wide announcements and discussions.',
-      whatsappNumber: '+254712345678',
-      groupCode: 'CHURCH2023',
-      actionText: 'Join Group',
+      // REPLACE THIS WITH YOUR ACTUAL GENERAL GROUP LINK
+      link: 'https://chat.whatsapp.com/YOUR_ACTUAL_GENERAL_GROUP_LINK_HERE',
+      actionText: 'Join General Group',
       color: 'bg-green-600 hover:bg-green-700',
       isWhatsApp: true
     }
@@ -139,44 +139,20 @@ const SocialsPage = () => {
                   
                   {social.isWhatsApp ? (
                     <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Group Details:</h4>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-gray-600">Group Code:</span>
-                            <div className="flex items-center">
-                              <span className="font-mono bg-gray-200 px-2 py-1 rounded mr-2">{social.groupCode}</span>
-                              <button
-                                onClick={() => copyToClipboard(social.groupCode, social.platform)}
-                                className="text-indigo-600 hover:text-indigo-800"
-                                title="Copy group code"
-                              >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                                </svg>
-                              </button>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-gray-600">Phone Number:</span>
-                            <div className="flex items-center">
-                              <span className="font-mono bg-gray-200 px-2 py-1 rounded mr-2">{social.whatsappNumber}</span>
-                              <button
-                                onClick={() => copyToClipboard(social.whatsappNumber, social.platform)}
-                                className="text-indigo-600 hover:text-indigo-800"
-                                title="Copy phone number"
-                              >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                                </svg>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h4 className="font-semibold text-green-800 mb-2 flex items-center">
+                          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          One-Click Join
+                        </h4>
+                        <p className="text-green-700 text-sm">
+                          Click below to instantly join our WhatsApp group. No need to save contacts or send messages!
+                        </p>
                       </div>
                       
                       <a
-                        href={`https://wa.me/${social.whatsappNumber.replace('+', '')}?text=Hello, I would like to join the ${social.platform}`}
+                        href={social.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`w-full ${social.color} text-white py-3 rounded-lg font-semibold transition flex items-center justify-center`}
@@ -204,6 +180,58 @@ const SocialsPage = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* WhatsApp Instructions Section */}
+          <div className="mt-12 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200">
+            <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">How to Get Your WhatsApp Group Links</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="font-semibold text-green-700 mb-4">For Group Admins:</h4>
+                <ol className="space-y-3 text-green-800">
+                  <li className="flex items-start">
+                    <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 flex-shrink-0">1</span>
+                    Open the WhatsApp group
+                  </li>
+                  <li className="flex items-start">
+                    <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 flex-shrink-0">2</span>
+                    Tap the group name → <strong>Invite to group</strong>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 flex-shrink-0">3</span>
+                    Tap <strong>Share link</strong> → <strong>Copy link</strong>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2 flex-shrink-0">4</span>
+                    Replace the placeholder links in the code with your actual group links
+                  </li>
+                </ol>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-green-700 mb-4">How It Works for Users:</h4>
+                <ul className="space-y-2 text-green-700">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Clicking the button opens WhatsApp directly to the group join screen</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Users see the group info and can join with one tap</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>No need to save contacts or send messages</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
           
           {/* Copy Success Message */}
           {copied && (
@@ -218,7 +246,7 @@ const SocialsPage = () => {
           )}
 
           {/* Additional Information */}
-          <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
+          <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Stay Connected</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
@@ -258,8 +286,8 @@ const SocialsPage = () => {
                 </p>
                 <div className="bg-indigo-100 p-4 rounded-lg">
                   <p className="text-indigo-800 font-medium">Media Team Contact:</p>
-                  <p className="text-indigo-600">media@gracetruthministries.org</p>
-                  <p className="text-indigo-600">+254 712 345 678</p>
+                  <p className="text-indigo-600">migirecomputers@gmail.com</p>
+                  <p className="text-indigo-600">+254 790 526 387</p>
                 </div>
               </div>
             </div>
