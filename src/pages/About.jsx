@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import pas from "../assets/Bishop.jpg";
-import past from "../assets/p.Rose.jpg";
+import pas from "../assets/Bishop.png";
+import past from "../assets/p.Rose.png";
 import pasto from "../assets/p.James.jpg";
 import pastor from "../assets/p.Dede.jpg";
 import oriang from "../assets/pastors/oriang_pastor.jpeg";
