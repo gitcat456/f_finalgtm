@@ -101,7 +101,7 @@ const Footer = () => {
             <Stack spacing={1.5}>
               <ContactItem icon={<RoomIcon sx={{ color: '#6366F1' }}/>} text="Mathare 4A, Nairobi, Kenya" />
               <ContactItem icon={<PhoneIcon sx={{ color: '#6366F1' }} />} text="+254 717508987" />
-              <ContactItem icon={<EmailIcon sx={{ color: '#6366F1' }}/>} text="okothdenzel65+gtministries@gmail.com" />
+              <ContactItem icon={<EmailIcon sx={{ color: '#6366F1' }}/>} text="graceandtruthministrychurch@gmail.com" />
             </Stack>
           </Box>
 
