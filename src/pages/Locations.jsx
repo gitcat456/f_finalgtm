@@ -1,150 +1,10 @@
-// src/pages/Branches.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import oriang from "../assets/pastors/oriang_pastor.jpeg";
-import kanyipir from "../assets/pastors/kanyipir_pastor.jpeg";
-import rawinji from "../assets/pastors/rawinji_pastor.jpeg";
-import pas from "../assets/Bishop.jpg";
-import past from "../assets/p.Rose.jpg";
-import pasto from "../assets/p.James.jpg";
-import pastor from "../assets/p.Dede.jpg";
-import pdan from "../assets/pdan.jpg";
-import pSusan from "../assets/pSusan.jpg";
-import matharedp from "../assets/matharedp.jpg";
 import { Call as PhoneIcon } from '@mui/icons-material';
+import { branches } from '../data/branchesData';
+import { getPastorImage } from '../data/pastorData';
 
 const BranchesPage = () => {
-  // Pastor images mapping
-  const pastorImages = {
-    "Pastor Dancun Ongoro": pdan,
-    "Pastor Susan Omondi": pSusan,
-    "Pastor Rosemary": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80",
-    "Pastor Lilian": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
-    "Pastor Fred Dede": pastor,
-    "Pastor Oromo Samson": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
-    "Pastor James Ochieng": "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=400&q=80",
-    "Pastor John Ouru": oriang,
-    "Gibson Onunga": pas,
-    "Teresa Owiti": past,
-    "Justus Omundo": pasto
-  };
-
-  // Default pastor image if not found
-  const getPastorImage = (pastorName) => {
-    return pastorImages[pastorName] || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80";
-  };
-
-  // Branches data
-  const branches = [
-    {
-      id: 1,
-      name: "Mathare Church",
-      location: "Mathare 4A, Nairobi",
-      pastor1: "Pastor Dancun Ongoro",
-      contact1: "+254 714 707462",
-      pastor2: "Pastor Susan Omondi",
-      contact2: "+254 726 327537",
-      services: "Saturday: 9am to 1pm",
-      img: matharedp
-    },
-    {
-      id: 2,
-      name: "Kiambio Branch",
-      location: "Kiambio, Nairobi",
-      pastor: "Pastor Rosemary",
-      services: "Saturday: 9am to 1pm",
-      img: "https://images.unsplash.com/photo-1545239705-1564e58b9e4a?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 3,
-      name: "LuckySummer Branch",
-      location: "LuckSummer, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 4,
-      name: "Rongai Branch",
-      location: "Rongai, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 5,
-      name: "Obama Branch",
-      location: "Obama Estate",
-      pastor: "Pastor Fred Dede",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 6,
-      name: "Ruaraka Branch",
-      location: "Mathare North Area2, Nairobi",
-      pastor: "Pastor Oromo Samson",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 7,
-      name: "Kisumu Branch",
-      location: "Nyamasaria, Kisumu",
-      pastor: "Pastor James Ochieng",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 8,
-      name: "Oriang Church",
-      location: "Oriang, Kendubay",
-      pastor: "Pastor John Ouru",
-      services: "Saturday 9am to 1pm ",
-      img: oriang
-    },
-    {
-      id: 9,
-      name: "Dago Branch",
-      location: "Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 10,
-      name: "Kanyipir",
-      location: "Kanyipir, Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: kanyipir
-    },
-    {
-      id: 11,
-      name: "Got0yolo",
-      location: "LuckySummer, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 12,
-      name: "Rawinji Branch ",
-      location: "Oyugis, KenduBay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: rawinji
-    },
-    {
-      id: 13,
-      name: "Got Kamajiwa",
-      location: "Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-16">
       {/* Hero Section */}
@@ -229,9 +89,11 @@ const BranchesPage = () => {
                   </div>
                   
                   <div className="border-t pt-4">
-                    <h4 className="font-bold text-gray-800 mb-3">Pastor</h4>
-                    <div className="flex flex-col space-y-4 ">
-                      {[branch.pastor1, branch.pastor2].map((pastor, index) => (
+                    <h4 className="font-bold text-gray-800 mb-3">Pastor(s)</h4>
+                    <div className="space-y-4">
+                      {[branch.pastor, branch.pastor1, branch.pastor2]
+                        .filter(pastor => pastor) // Remove undefined/null values
+                        .map((pastor, index) => (
                         <div key={index} className="flex items-center">
                           <div className="w-12 h-12 rounded-full overflow-hidden mr-3 border-2 border-indigo-500 flex-shrink-0">
                             <img 
@@ -245,7 +107,7 @@ const BranchesPage = () => {
                             <div className="flex items-center mt-1">
                               <PhoneIcon sx={{ color: '#6366F1', fontSize: '18px', mr: 1 }} />
                               <span className="text-gray-600 text-sm">
-                                {index === 0 ? branch.contact1 : branch.contact2}
+                                {index === 0 ? branch.contact : (index === 1 ? branch.contact1 : branch.contact2)}
                               </span>
                             </div>
                           </div>
@@ -281,7 +143,7 @@ const BranchesPage = () => {
             <div className="bg-gray-200 h-96 rounded-xl flex items-center justify-center">
               <div className="text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-indigo-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 11111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <p className="text-gray-600">Interactive map coming soon</p>
