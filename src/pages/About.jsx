@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import pas from "../assets/Bishop.png";
 import past from "../assets/p.Rose.png";
-import pastor from "../assets/p.Dede.jpg";
 import oriang from "../assets/oriang_pastor.jpeg";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
 import rawinji from "../assets/rawinji_pastor.jpeg";
@@ -58,113 +57,7 @@ const AboutPage = () => {
     }*/
   ];
   
-  // Branches data
-  const branches = [
-    {
-      id: 1,
-      name: "Mathare Church",
-      location: "Mathare 4A, Nairobi",
-      pastor: "Pastor Dancun Ongoro",
-      services: "Saturday: 9am to 1pm",
-      img: "https://images.unsplash.com/photo-1515586838455-8f8f940d6853?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 2,
-      name: "Kiambio Branch",
-      location: "Kiambio, Nairobi",
-      pastor: "Pastor Rosemary",
-      services: "Saturday: 9am to 1pm",
-      img: "https://images.unsplash.com/photo-1545239705-1564e58b9e4a?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 3,
-      name: "LuckySummer Branch",
-      location: "LuckSummer, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 4,
-      name: "Rongai Branch",
-      location: "Rongai, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 5,
-      name: "Obama Branch",
-      location: "Obama Estate",
-      pastor: "Pastor Fred Dede",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 6,
-      name: "Ruaraka Branch",
-      location: "Mathare North Area2, Nairobi",
-      pastor: "Pastor Oromo Samson",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 7,
-      name: "Kisumu Branch",
-      location: "Nyamasaria, Kisumu",
-      pastor: "Pastor James Ochieng",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 8,
-      name: "Oriang Church",
-      location: "Oriang, Kendubay",
-      pastor: "Pastor John Ouru",
-      services: "Saturday 9am to 1pm ",
-      img: oriang
-    },
-    {
-      id: 9,
-      name: "Dago Branch",
-      location: "Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 10,
-      name: "Kanyipir",
-      location: "Kanyipir, Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: kanyipir
-    },
-    {
-      id: 11,
-      name: "Got0yolo",
-      location: "LuckySummer, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 12,
-      name: "Rawinji Branch ",
-      location: "Oyugis, KenduBay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: rawinji
-    },
-    {
-      id: 13,
-      name: "Got Kamajiwa",
-      location: "Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-  ];
+  
 
   // Check URL hash on component mount and navigation
   useEffect(() => {
