@@ -21,7 +21,7 @@ const AboutPage = () => {
     name: "The Late Bishop Nathaniel Owiti",
     role: "Founder",
     img: "../assets/p.James.jpg",
-    bio: "Rev. John laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
+    bio: "Bishop Nathaniel laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
   }
 ];
 
@@ -348,79 +348,87 @@ const AboutPage = () => {
           )}
 
           {/* Founders Section */} 
-          {activeSection === 'founders' && (
-            <motion.div
-              key="founders"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="mb-16 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Founders</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Learn about the visionaries who established GTM Ministries and laid the foundation for our mission
-                </p>
-              </div>
+{activeSection === 'founders' && (
+  <motion.div
+    key="founders"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.5 }}
+    className="max-w-6xl mx-auto"
+  >
+    <div className="mb-16 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Founders</h2>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Learn about the visionaries who established GTM Ministries and laid the foundation for our mission
+      </p>
+    </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {founders.map((founder, index) => (
-                  <motion.div
-                    key={founder.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -10 }}
-                    className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
-                  >
-                    <div className="relative h-72">
-                      <img 
-                        src={founder.img} 
-                        alt={founder.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-xl font-bold text-white">{founder.name}</h3>
-                        <p className="text-indigo-200">{founder.role}</p>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <p className="text-gray-600 mb-4">
-                        {founder.bio}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-                 
-              <motion.div 
-                className="mt-20 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <div className="max-w-4xl mx-auto">
-                  <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Our Journey</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="text-center">
-                      <div className="text-5xl font-bold text-indigo-600 mb-2">2003</div>
-                      <p className="text-gray-700">Duly registered by the Registrar of Societies and Issued with certfificate No.22609 dated 16th July 2003</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-5xl font-bold text-indigo-600 mb-2">2008</div>
-                      <p className="text-gray-700">Built our first sanctuary serving 100+ members</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-5xl font-bold text-indigo-600 mb-2">Today</div>
-                      <p className="text-gray-700">Serving over 500+ members across different branches countrywide</p>
-                    </div>
-                  </div>
+    {/* Founders Grid - Fixed structure */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {founders.map((founder, index) => (
+        <motion.div
+          key={founder.id}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -10 }}
+          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+        >
+          <div className="relative h-72">
+            <img 
+              src={founder.img} 
+              alt={founder.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <h3 className="text-xl font-bold text-white">{founder.name}</h3>
+              <p className="text-indigo-200">{founder.role}</p>
+            </div>
+          </div>
+          <div className="p-6">
+                  <p className="text-gray-600 mb-4">
+                    {founder.bio}
+                  </p>
                 </div>
               </motion.div>
-              </div>
-            </motion.div>
-          )}
+            ))}
+          </div>
+
+    {/* Our Journey Section - Moved outside the founders grid */}
+    <motion.div 
+      className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 sm:p-8"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4 }}
+    >
+      <div className="max-w-4xl mx-auto">
+        <h3 className="text-xl sm:text-2xl font-bold text-indigo-800 mb-4 sm:mb-6 text-center">Our Journey</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div className="text-center p-4 sm:p-0">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-indigo-600 mb-2">2003</div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Duly registered by the Registrar of Societies and Issued with certificate No.22609 dated 16th July 2003
+            </p>
+          </div>
+          <div className="text-center p-4 sm:p-0">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-indigo-600 mb-2">2008</div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Built our first sanctuary serving 100+ members
+            </p>
+          </div>
+          <div className="text-center p-4 sm:p-0">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-indigo-600 mb-2">Today</div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Serving over 500+ members across different branches countrywide
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+)}
 
 
           {/* Branches Section */}
