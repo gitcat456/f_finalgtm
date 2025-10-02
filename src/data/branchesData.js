@@ -1,7 +1,18 @@
-import oriang from "../assets/pastors/oriang_pastor.jpeg";
-import kanyipir from "../assets/pastors/kanyipir_pastor.jpeg";
-import rawinji from "../assets/pastors/rawinji_pastor.jpeg";
+import oriang from "../assets/oriang_pastor.jpeg";
+import kanyipir from "../assets/kanyipir_pastor.jpeg";
+import rawinji from "../assets/rawinji_pastor.jpeg";
 import matharedp from "../assets/matharedp.jpg";
+import br1 from "../assets/br1.jpg";
+import br2 from "../assets/br2.jpg";
+import br3 from "../assets/br3.jpg";
+import br4 from "../assets/br4.jpg";
+import br5 from "../assets/br5.jpg";
+import br6 from "../assets/br6.jpg";
+import br7 from "../assets/br7.jpg";
+import br8 from "../assets/br8.jpg";
+import br9 from "../assets/br9.jpg";
+import br10 from "../assets/br10.jpg";
+
 
 export const branches = [
   {
@@ -21,15 +32,15 @@ export const branches = [
     location: "Kiambio, Nairobi",
     pastor: "Pastor Rosemary",
     services: "Saturday: 9am to 1pm",
-    img: "https://images.unsplash.com/photo-1545239705-1564e58b9e4a?auto=format&fit=crop&w=800&q=80"
-  },
+    img: br1
+    },
   {
     id: 3,
     name: "LuckySummer Branch",
     location: "LuckSummer, Nairobi",
     pastor: "Pastor Lilian",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br2
   },
   {
     id: 4,
@@ -37,7 +48,7 @@ export const branches = [
     location: "Rongai, Nairobi",
     pastor: "Pastor Lilian",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br3
   },
   {
     id: 5,
@@ -45,7 +56,7 @@ export const branches = [
     location: "Obama Estate",
     pastor: "Pastor Fred Dede",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br4
   },
   {
     id: 6,
@@ -53,7 +64,7 @@ export const branches = [
     location: "Mathare North Area2, Nairobi",
     pastor: "Pastor Oromo Samson",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br5
   },
   {
     id: 7,
@@ -61,7 +72,7 @@ export const branches = [
     location: "Nyamasaria, Kisumu",
     pastor: "Pastor James Ochieng",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br6
   },
   {
     id: 8,
@@ -77,7 +88,7 @@ export const branches = [
     location: "Homabay",
     pastor: "Pastor Lilian",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br7
   },
   {
     id: 10,
@@ -93,7 +104,7 @@ export const branches = [
     location: "LuckySummer, Nairobi",
     pastor: "Pastor Lilian",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br8
   },
   {
     id: 12,
@@ -101,7 +112,7 @@ export const branches = [
     location: "Oyugis, KenduBay",
     pastor: "Pastor Lilian",
     services: "Saturday 9am to 1pm ",
-    img: rawinji
+    img: br9
   },
   {
     id: 13,
@@ -109,6 +120,6 @@ export const branches = [
     location: "Homabay",
     pastor: "Pastor Lilian",
     services: "Saturday 9am to 1pm ",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    img: br10
   },
 ];
