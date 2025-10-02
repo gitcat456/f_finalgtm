@@ -11,8 +11,10 @@ const BranchesPage = () => {
       <div className="relative py-20 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 to-purple-900 opacity-95"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517021897933-0c031b497f3e?auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div 
+            className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-20"
+            style={{ backgroundImage: "url('/src/assets/children.jpg')" }}
+          ></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
