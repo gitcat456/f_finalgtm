@@ -134,9 +134,9 @@ const BranchesPage = () => {
             <p className="text-gray-700 max-w-2xl mx-auto mb-6">
               We're constantly expanding our community. If you don't see a branch in your area, let us know and we'll help you connect with fellow believers nearby.
             </p>
-            <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
+            {/*<button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
               Request a New Branch
-            </button>
+            </button>*/}
           </div>
 
           {/* Map Section */}
