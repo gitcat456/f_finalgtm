@@ -8,6 +8,7 @@ import pastor from "../assets/p.Dede.jpg";
 import oriang from "../assets/oriang_pastor.jpeg";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
 import rawinji from "../assets/rawinji_pastor.jpeg";
+import vission from "../assets/vission.jpg";
 
 const AboutPage = () => {
   const location = useLocation();
@@ -260,7 +261,7 @@ const AboutPage = () => {
                 >
                   <div className="overflow-hidden rounded-2xl shadow-xl border-8 border-white transform -rotate-1">
                     <img 
-                      src="https://wvusstatic.com/www/uploads/2019/02/D200-0972-32-850x567.jpg" 
+                      src= {vission} 
                       alt="Church Vision" 
                       className="w-full h-80 object-cover"
                     />
