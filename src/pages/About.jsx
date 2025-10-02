@@ -4,11 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import pas from "../assets/Bishop.png";
 import past from "../assets/p.Rose.png";
-import pasto from "../assets/p.James.jpg";
 import pastor from "../assets/p.Dede.jpg";
-import oriang from "../assets/pastors/oriang_pastor.jpeg";
-import kanyipir from "../assets/pastors/kanyipir_pastor.jpeg";
-import rawinji from "../assets/pastors/rawinji_pastor.jpeg";
+import oriang from "../assets/oriang_pastor.jpeg";
+import kanyipir from "../assets/kanyipir_pastor.jpeg";
+import rawinji from "../assets/rawinji_pastor.jpeg";
 
 const AboutPage = () => {
   const location = useLocation();
@@ -19,18 +18,11 @@ const AboutPage = () => {
   const founders = [
   {
     id: 1,
-    name: "Rev. John Doe",
-    role: "Co-Founder",
+    name: "The Late Bishop Nathaniel Owiti",
+    role: "Founder",
     img: "../assets/p.James.jpg",
     bio: "Rev. John laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
-  },
-  {
-    id: 2,
-    name: "Mrs. Jane Doe",
-    role: "Co-Founder",
-    img: "../assets/p.Dede.jpg",
-    bio: "Jane was instrumental in building community programs and supporting the growth of the ministry."
-  },
+  }
 ];
 
   // Clergy data
@@ -39,14 +31,14 @@ const AboutPage = () => {
       id: 1,
       name: "Gibson Onunga",
       title: "Bishop",
-      bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation. He holds a Doctorate in Theology from Nairobi University.",
+      bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation.",
       img: pas,
     },
     {
       id: 2,
       name: "Teresa Owiti",
       title: "Assistant Bishop",
-      bio: "Assistant Bishop Teresa leads our youth and community outreach programs. He's passionate about empowering young people to live out their faith in practical ways.",
+      bio: "Assistant Bishop Teresa leads our youth and community outreach programs. She's passionate about empowering young people to live out their faith in practical ways.",
       img: past,
     }
     /*{
