@@ -47,8 +47,8 @@ const SocialsPage = () => {
         </svg>
       ),
       description: 'Join our youth WhatsApp group for fellowship, discussions, and event coordination.',
-      // REPLACE THIS WITH YOUR ACTUAL YOUTH GROUP LINK
-      link: 'https://chat.whatsapp.com/YOUR_ACTUAL_YOUTH_GROUP_LINK_HERE',
+  
+      link: 'https://chat.whatsapp.com/C0eSzXVdetM5y4reZnzoJq?mode=ems_copy_t',
       actionText: 'Join Youth Group',
       color: 'bg-green-600 hover:bg-green-700',
       isWhatsApp: true
@@ -62,8 +62,7 @@ const SocialsPage = () => {
         </svg>
       ),
       description: 'Join our general conference WhatsApp group for church-wide announcements and discussions.',
-      // REPLACE THIS WITH YOUR ACTUAL GENERAL GROUP LINK
-      link: 'https://chat.whatsapp.com/YOUR_ACTUAL_GENERAL_GROUP_LINK_HERE',
+      link: 'https://chat.whatsapp.com/JJnmLEur8OyKkFWOS6tDY8?mode=ems_copy_t',
       actionText: 'Join General Group',
       color: 'bg-green-600 hover:bg-green-700',
       isWhatsApp: true
@@ -76,7 +75,10 @@ const SocialsPage = () => {
       <div className="relative py-20 md:py-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-900 to-purple-900 opacity-95"></div>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1464863979621-258859e62245?auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
+          <div 
+            className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-20"
+            style={{ backgroundImage: "url('/src/assets/praise.png')" }}
+          ></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         </div>
         
