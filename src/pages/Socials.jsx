@@ -183,7 +183,7 @@ const SocialsPage = () => {
             ))}
           </div>
 
-          {/* WhatsApp Instructions Section */}
+          {/* WhatsApp Instructions Section 
           <div className="mt-12 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200">
             <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">How to Get Your WhatsApp Group Links</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -233,7 +233,7 @@ const SocialsPage = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
           
           {/* Copy Success Message */}
           {copied && (
@@ -248,7 +248,7 @@ const SocialsPage = () => {
           )}
 
           {/* Additional Information */}
-          <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
+          <div className="mt-12 bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-8 border border-green-200">
             <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Stay Connected</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
@@ -286,7 +286,7 @@ const SocialsPage = () => {
                 <p className="text-gray-700 mb-4">
                   If you're having trouble joining any of our groups or connecting with us on social media, please contact our media team for assistance.
                 </p>
-                <div className="bg-indigo-100 p-4 rounded-lg">
+                <div className="bg-gradient-to-r from-green-200 to-emerald-200 p-4 rounded-lg">
                   <p className="text-indigo-800 font-medium">Media Team Contact:</p>
                   <p className="text-indigo-600">migirecomputers@gmail.com</p>
                   <p className="text-indigo-600">+254 790 526 387</p>
