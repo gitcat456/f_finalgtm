@@ -2,13 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import pas from "../assets/Bishop.jpg";
-import past from "../assets/p.Rose.jpg";
-import pasto from "../assets/p.James.jpg";
-import pastor from "../assets/p.Dede.jpg";
-import oriang from "../assets/pastors/oriang_pastor.jpeg";
-import kanyipir from "../assets/pastors/kanyipir_pastor.jpeg";
-import rawinji from "../assets/pastors/rawinji_pastor.jpeg";
+import pas from "../assets/Bishop.png";
+import past from "../assets/p.Rose.png";
+import oriang from "../assets/oriang_pastor.jpeg";
+import kanyipir from "../assets/kanyipir_pastor.jpeg";
+import rawinji from "../assets/rawinji_pastor.jpeg";
+import vission from "../assets/vission.jpg";
 
 const AboutPage = () => {
   const location = useLocation();
@@ -19,18 +18,11 @@ const AboutPage = () => {
   const founders = [
   {
     id: 1,
-    name: "Rev. John Doe",
-    role: "Co-Founder",
+    name: "The Late Bishop Nathaniel Owiti",
+    role: "Founder",
     img: "../assets/p.James.jpg",
-    bio: "Rev. John laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
-  },
-  {
-    id: 2,
-    name: "Mrs. Jane Doe",
-    role: "Co-Founder",
-    img: "../assets/p.Dede.jpg",
-    bio: "Jane was instrumental in building community programs and supporting the growth of the ministry."
-  },
+    bio: "Bishop Nathaniel laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
+  }
 ];
 
   // Clergy data
@@ -39,14 +31,14 @@ const AboutPage = () => {
       id: 1,
       name: "Gibson Onunga",
       title: "Bishop",
-      bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation. He holds a Doctorate in Theology from Nairobi University.",
+      bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation.",
       img: pas,
     },
     {
       id: 2,
       name: "Teresa Owiti",
       title: "Assistant Bishop",
-      bio: "Assistant Bishop Teresa leads our youth and community outreach programs. He's passionate about empowering young people to live out their faith in practical ways.",
+      bio: "Assistant Bishop Teresa leads our youth and community outreach programs. She's passionate about empowering young people to live out their faith in practical ways.",
       img: past,
     }
     /*{
@@ -65,113 +57,7 @@ const AboutPage = () => {
     }*/
   ];
   
-  // Branches data
-  const branches = [
-    {
-      id: 1,
-      name: "Mathare Church",
-      location: "Mathare 4A, Nairobi",
-      pastor: "Pastor Dancun Ongoro",
-      services: "Saturday: 9am to 1pm",
-      img: "https://images.unsplash.com/photo-1515586838455-8f8f940d6853?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 2,
-      name: "Kiambio Branch",
-      location: "Kiambio, Nairobi",
-      pastor: "Pastor Rosemary",
-      services: "Saturday: 9am to 1pm",
-      img: "https://images.unsplash.com/photo-1545239705-1564e58b9e4a?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 3,
-      name: "LuckySummer Branch",
-      location: "LuckSummer, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 4,
-      name: "Rongai Branch",
-      location: "Rongai, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 5,
-      name: "Obama Branch",
-      location: "Obama Estate",
-      pastor: "Pastor Fred Dede",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 6,
-      name: "Ruaraka Branch",
-      location: "Mathare North Area2, Nairobi",
-      pastor: "Pastor Oromo Samson",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 7,
-      name: "Kisumu Branch",
-      location: "Nyamasaria, Kisumu",
-      pastor: "Pastor James Ochieng",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 8,
-      name: "Oriang Church",
-      location: "Oriang, Kendubay",
-      pastor: "Pastor John Ouru",
-      services: "Saturday 9am to 1pm ",
-      img: oriang
-    },
-    {
-      id: 9,
-      name: "Dago Branch",
-      location: "Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 10,
-      name: "Kanyipir",
-      location: "Kanyipir, Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: kanyipir
-    },
-    {
-      id: 11,
-      name: "Got0yolo",
-      location: "LuckySummer, Nairobi",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      id: 12,
-      name: "Rawinji Branch ",
-      location: "Oyugis, KenduBay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: rawinji
-    },
-    {
-      id: 13,
-      name: "Got Kamajiwa",
-      location: "Homabay",
-      pastor: "Pastor Lilian",
-      services: "Saturday 9am to 1pm ",
-      img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
-    },
-  ];
+  
 
   // Check URL hash on component mount and navigation
   useEffect(() => {
@@ -268,7 +154,7 @@ const AboutPage = () => {
                 >
                   <div className="overflow-hidden rounded-2xl shadow-xl border-8 border-white transform -rotate-1">
                     <img 
-                      src="https://wvusstatic.com/www/uploads/2019/02/D200-0972-32-850x567.jpg" 
+                      src= {vission} 
                       alt="Church Vision" 
                       className="w-full h-80 object-cover"
                     />
@@ -356,157 +242,88 @@ const AboutPage = () => {
           )}
 
           {/* Founders Section */} 
-          {activeSection === 'founders' && (
-            <motion.div
-              key="founders"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="mb-16 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Founders</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Learn about the visionaries who established GTM Ministries and laid the foundation for our mission
-                </p>
-              </div>
+{activeSection === 'founders' && (
+  <motion.div
+    key="founders"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.5 }}
+    className="max-w-6xl mx-auto"
+  >
+    <div className="mb-16 text-center">
+      <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Founders</h2>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        Learn about the visionaries who established GTM Ministries and laid the foundation for our mission
+      </p>
+    </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {founders.map((founder, index) => (
-                  <motion.div
-                    key={founder.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -10 }}
-                    className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
-                  >
-                    <div className="relative h-72">
-                      <img 
-                        src={founder.img} 
-                        alt={founder.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-xl font-bold text-white">{founder.name}</h3>
-                        <p className="text-indigo-200">{founder.role}</p>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <p className="text-gray-600 mb-4">
-                        {founder.bio}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-                 
-              <motion.div 
-                className="mt-20 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <div className="max-w-4xl mx-auto">
-                  <h3 className="text-2xl font-bold text-indigo-800 mb-6 text-center">Our Journey</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="text-center">
-                      <div className="text-5xl font-bold text-indigo-600 mb-2">2003</div>
-                      <p className="text-gray-700">Duly registered by the Registrar of Societies and Issued with certfificate No.22609 dated 16th July 2003</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-5xl font-bold text-indigo-600 mb-2">2008</div>
-                      <p className="text-gray-700">Built our first sanctuary serving 100+ members</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-5xl font-bold text-indigo-600 mb-2">Today</div>
-                      <p className="text-gray-700">Serving over 500+ members across different branches countrywide</p>
-                    </div>
-                  </div>
+    {/* Founders Grid - Fixed structure */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {founders.map((founder, index) => (
+        <motion.div
+          key={founder.id}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -10 }}
+          className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
+        >
+          <div className="relative h-72">
+            <img 
+              src={founder.img} 
+              alt={founder.name}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <h3 className="text-xl font-bold text-white">{founder.name}</h3>
+              <p className="text-indigo-200">{founder.role}</p>
+            </div>
+          </div>
+          <div className="p-6">
+                  <p className="text-gray-600 mb-4">
+                    {founder.bio}
+                  </p>
                 </div>
               </motion.div>
-              </div>
-            </motion.div>
-          )}
+            ))}
+          </div>
 
+    {/* Our Journey Section - Moved outside the founders grid */}
+    <motion.div 
+      className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 sm:p-8"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4 }}
+    >
+      <div className="max-w-4xl mx-auto">
+        <h3 className="text-xl sm:text-2xl font-bold text-indigo-800 mb-4 sm:mb-6 text-center">Our Journey</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div className="text-center p-4 sm:p-0">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-indigo-600 mb-2">2003</div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Duly registered by the Registrar of Societies and Issued with certificate No.22609 dated 16th July 2003
+            </p>
+          </div>
+          <div className="text-center p-4 sm:p-0">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-indigo-600 mb-2">2008</div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Built our first sanctuary serving 100+ members
+            </p>
+          </div>
+          <div className="text-center p-4 sm:p-0">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-indigo-600 mb-2">Today</div>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              Serving over 500+ members across different branches countrywide
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+)}
 
-          {/* Branches Section */}
-          {activeSection === 'branches' && (
-            <motion.div
-              key="branches"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto"
-            >
-              <div className="mb-16 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">Our Locations</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Find a church location near you and join our community
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {branches.map((branch, index) => (
-                  <motion.div
-                    key={branch.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
-                    className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
-                  >
-                    <div className="relative h-60">
-                      <img 
-                        src={branch.img} 
-                        alt={branch.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-xl font-bold text-white">{branch.name}</h3>
-                      </div>
-                    </div>
-                    
-                    <div className="p-6">
-                      <div className="flex items-start mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <p className="text-gray-600">{branch.location}</p>
-                      </div>
-                      
-                      <div className="flex items-start mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p className="text-gray-600">{branch.services}</p>
-                      </div>
-                      
-                      <div className="border-t pt-4">
-                        <h4 className="font-bold text-gray-800 mb-3">Pastor</h4>
-                        <p className="text-gray-600">{branch.pastor}</p>
-                      </div>
-                      
-                      <button className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">
-                        Visit This Location
-                      </button>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div className="mt-16 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 text-center">
-                <h3 className="text-2xl font-bold text-indigo-800 mb-4">Can't Find a Branch Near You?</h3>
-                <p className="text-gray-700 max-w-2xl mx-auto mb-6">
-                  We're constantly expanding our community. If you don't see a branch in your area, let us know and we'll help you connect with fellow believers nearby.
-                </p>
-              </div>
-            </motion.div>
-          )}
         </AnimatePresence>
       </div>
     </div>

@@ -4,7 +4,7 @@ import {
   Church as ChurchIcon,
   Facebook as FacebookIcon,
   YouTube as YouTubeIcon,
-  Instagram as InstagramIcon,
+  WhatsApp as WhatsAppIcon,
   Phone as PhoneIcon,
   Email as EmailIcon,
   Room as RoomIcon,
@@ -49,8 +49,7 @@ const Footer = () => {
           {/* Church Info */}
           <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <ChurchIcon sx={{ color: 'primary.light', mr: 1 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+              <Typography variant="h6" sx={{ fontWeight: 600, color: '#6366F1' }}>
                 GTM Ministries
               </Typography>
             </Box>
@@ -65,14 +64,14 @@ const Footer = () => {
                 <YouTubeIcon />
               </IconButton>
               <IconButton href="#" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}>
-                <InstagramIcon />
+                <WhatsAppIcon />
               </IconButton>
             </Box>
           </Box>
 
           {/* Quick Links */}
           <Box>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>Quick Links</Typography>
+            <Typography variant="h6" sx={{ mb: 2, fontWeight: 500, color: '#6366F1' }}>Quick Links</Typography>
             <Stack spacing={1}>
               {quickLinks.map((label) => (
                 <NavLink
@@ -84,8 +83,8 @@ const Footer = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: isActive ? 'primary.light' : 'grey.300',
-                        '&:hover': { color: 'primary.light' }
+                        color: isActive ? '#6366F1' : 'grey.300',
+                        '&:hover': { color: '#6366F1' }
                       }}
                     >
                       {label}
@@ -98,11 +97,11 @@ const Footer = () => {
 
           {/* Contact Us */}
           <Box>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>Contact Us</Typography>
+            <Typography variant="h6" sx={{ mb: 2, fontWeight: 500, color: '#6366F1'  }}>Contact Us</Typography>
             <Stack spacing={1.5}>
-              <ContactItem icon={<RoomIcon />} text="Mathare 4A, Nairobi, Kenya" />
-              <ContactItem icon={<PhoneIcon />} text="+254 717508987" />
-              <ContactItem icon={<EmailIcon />} text="gtministries@gmail.com" />
+              <ContactItem icon={<RoomIcon sx={{ color: '#6366F1' }}/>} text="Mathare 4A, Nairobi, Kenya" />
+              <ContactItem icon={<PhoneIcon sx={{ color: '#6366F1' }} />} text="+254 717508987" />
+              <ContactItem icon={<EmailIcon sx={{ color: '#6366F1' }}/>} text="graceandtruthministrychurch@gmail.com" />
             </Stack>
           </Box>
 
