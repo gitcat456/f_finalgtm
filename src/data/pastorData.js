@@ -2,7 +2,7 @@ import pdan from "../assets/pdan.jpg";
 import pSusan from "../assets/pSusan.jpg";
 import pastor from "../assets/pdede.png";
 import oriang from "../assets/oriang_pastor.jpeg";
-import pas from "../assets/Bishop.png";
+import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
 import rawinji from "../assets/rawinji_pastor.jpeg";
