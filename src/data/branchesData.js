@@ -6,12 +6,12 @@ import br1 from "../assets/br1.webp";
 import br2 from "../assets/br2one.webp";
 import br3 from "../assets/br3.webp";
 import br4 from "../assets/br4.webp";
-import br5 from "../assets/br5.jpg";
+import br5 from "../assets/br5.avif";
 import br6 from "../assets/br6.jpg";
 import br7 from "../assets/br7.jpg";
 import br8 from "../assets/br8.jpg";
 import br9 from "../assets/br9.jpg";
-import br10 from "../assets/br10.jpg";
+import br10 from "../assets/br10.avif";
 
 
 export const branches = [
