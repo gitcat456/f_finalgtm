@@ -1,6 +1,6 @@
 
 import { Church, Groups, LibraryBooks, Mic, VolunteerActivism, WavingHand, AccessTime, CalendarToday } from '@mui/icons-material';
-import home from '../assets/home.jpg';
+import home from '../assets/home.avif';
 import { Link } from "react-router-dom";
 
 const Home = () => {
