@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
-import pas from "../assets/Bishop.png";
+import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
 import oriang from "../assets/oriang_pastor.jpeg";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
