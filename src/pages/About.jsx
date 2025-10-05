@@ -4,9 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
-import oriang from "../assets/oriang_pastor.jpeg";
-import kanyipir from "../assets/kanyipir_pastor.jpeg";
-import rawinji from "../assets/rawinji_pastor.jpeg";
 import vission from "../assets/vission.jpg";
 
 const AboutPage = () => {
