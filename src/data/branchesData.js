@@ -1,4 +1,4 @@
-import oriang from "../assets/oriang_pastor.jpeg";
+import oriang from "../assets/oriang_pastor.jpg";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
 import rawinji from "../assets/rawinji_pastor.jpeg";
 import matharedp from "../assets/matharedp.jpg";
@@ -19,8 +19,8 @@ export const branches = [
     id: 1,
     name: "Mathare Church",
     location: "Mathare 4A, Nairobi",
-    pastor1: "Pastor Dancun Ongoro",
     contact1: "+254 714 707462",
+    pastor1: "Pastor Dancun Ongoro",
     pastor2: "Pastor Susan Omondi",
     contact2: "+254 726 327537",
     services: "Saturday: 9am to 1pm",
@@ -31,6 +31,7 @@ export const branches = [
     name: "Kiambio Branch",
     location: "Kiambio, Nairobi",
     pastor: "Pastor Rosemary",
+    contact: "+254 700 000000",
     services: "Saturday: 9am to 1pm",
     img: br1
     },
@@ -39,6 +40,7 @@ export const branches = [
     name: "LuckySummer Branch",
     location: "LuckSummer, Nairobi",
     pastor: "Pastor Lilian",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: br2
   },
@@ -47,6 +49,7 @@ export const branches = [
     name: "Rongai Branch",
     location: "Rongai, Nairobi",
     pastor: "Pastor Lilian",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: br3
   },
@@ -55,6 +58,7 @@ export const branches = [
     name: "Obama Branch",
     location: "Obama Estate",
     pastor: "Pastor Fred Dede",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: br4
   },
@@ -63,6 +67,7 @@ export const branches = [
     name: "Ruaraka Branch",
     location: "Mathare North Area2, Nairobi",
     pastor: "Pastor Oromo Samson",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: br5
   },
@@ -71,6 +76,7 @@ export const branches = [
     name: "Kisumu Branch",
     location: "Nyamasaria, Kisumu",
     pastor: "Pastor James Ochieng",
+    contact: "+254 725 106547",
     services: "Saturday 9am to 1pm ",
     img: br6
   },
@@ -79,6 +85,7 @@ export const branches = [
     name: "Oriang Church",
     location: "Oriang, Kendubay",
     pastor: "Pastor John Ouru",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: oriang
   },
@@ -87,6 +94,7 @@ export const branches = [
     name: "Dago Branch",
     location: "Homabay",
     pastor: "Pastor Lilian",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: br7
   },
@@ -94,7 +102,8 @@ export const branches = [
     id: 10,
     name: "Kanyipir",
     location: "Kanyipir, Homabay",
-    pastor: "Pastor Lilian",
+    pastor: "Pastor Mathews Bollo",
+    contact: "+254 795 297491",
     services: "Saturday 9am to 1pm ",
     img: kanyipir
   },
@@ -102,7 +111,8 @@ export const branches = [
     id: 11,
     name: "Got0yolo",
     location: "LuckySummer, Nairobi",
-    pastor: "Pastor Lilian",
+    pastor: "Pastor Samuel Muga",
+    contact: "+254 728 092235",
     services: "Saturday 9am to 1pm ",
     img: br8
   },
@@ -110,7 +120,8 @@ export const branches = [
     id: 12,
     name: "Rawinji Branch ",
     location: "Oyugis, KenduBay",
-    pastor: "Pastor Lilian",
+    pastor: "Pastor Evaline",
+    contact: "+254 728 092235",
     services: "Saturday 9am to 1pm ",
     img: br9
   },
@@ -119,6 +130,7 @@ export const branches = [
     name: "Got Kamajiwa",
     location: "Homabay",
     pastor: "Pastor Lilian",
+    contact: "+254 700 000000",
     services: "Saturday 9am to 1pm ",
     img: br10
   },
