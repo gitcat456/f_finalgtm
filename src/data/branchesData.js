@@ -1,4 +1,4 @@
-import oriang from "../assets/oriang_pastor.jpg";
+import oriang from "../assets/oriang_pastor.JPG";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
 import rawinji from "../assets/rawinji_pastor.jpeg";
 import matharedp from "../assets/matharedp.jpg";
