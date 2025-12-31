@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItemButton, ListItemText, Box, Container, Divider, Menu, MenuItem, Collapse } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,51 +8,91 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavLink, useNavigate } from 'react-router-dom';
 import off_logo from '../assets/off_logo.png';
 
+// Memoize nav links to prevent recalculation
+const NAV_LINKS = [
+  { label: 'Home', to: '/' },
+  { 
+    label: 'About Us', 
+    to: '/about',
+    hasSubmenu: true,
+    options: [
+      { label: 'Our Mission & Vision', section: 'mission' },
+      { label: 'Our Clergy', section: 'clergy' },
+      { label: 'Founders', section: 'founders' },
+    ]
+  },
+  { label: 'Events', to: '/events' },
+  { label: 'Locations', to: '/locations' },
+  { label: 'Social Links', to: '/gtm_socials' },
+];
+
+// Logo component with optimization
+const Logo = React.memo(() => (
+  <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
+    <Box
+      display="flex"
+      alignItems="center"
+      sx={{
+        backgroundColor: 'transparent',
+        padding: 0,
+        margin: 0,
+      }}
+    >
+      <img
+        src={off_logo}
+        alt="GTM Logo"
+        loading="eager"
+        width={46}
+        height="auto"
+        style={{
+          marginRight: 8,
+          backgroundColor: 'transparent',
+          display: 'block',
+          border: 'none',
+          boxShadow: 'none',
+        }}
+      />
+      <Typography variant="h6" fontWeight={700} className="text-indigo-800">
+        GTM Ministries
+      </Typography>
+    </Box>
+  </NavLink>
+));
+
+Logo.displayName = 'Logo';
+
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [aboutMenuAnchor, setAboutMenuAnchor] = useState(null);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const navigate = useNavigate();
 
-  const toggleDrawer = (open) => () => {
+  // Memoize callbacks to prevent unnecessary re-renders
+  const toggleDrawer = useCallback((open) => () => {
     setMobileOpen(open);
-  };
+  }, []);
 
-  const handleAboutMenuOpen = (event) => {
+  const handleAboutMenuOpen = useCallback((event) => {
     setAboutMenuAnchor(event.currentTarget);
-  };
+  }, []);
 
-  const handleAboutMenuClose = () => {
+  const handleAboutMenuClose = useCallback(() => {
     setAboutMenuAnchor(null);
-  };
+  }, []);
 
-  const handleMobileAboutToggle = () => {
-    setMobileAboutOpen(!mobileAboutOpen);
-  };
+  const handleMobileAboutToggle = useCallback(() => {
+    setMobileAboutOpen(prev => !prev);
+  }, []);
 
-  const handleAboutOptionClick = (section) => {
+  const handleAboutOptionClick = useCallback((section) => {
     navigate(`/about#${section}`);
     setAboutMenuAnchor(null);
     setMobileOpen(false);
     setMobileAboutOpen(false);
-  };
+  }, [navigate]);
 
-  const navLinks = [
-    { label: 'Home', to: '/' },
-    { 
-      label: 'About Us', 
-      to: '/about',
-      hasSubmenu: true,
-      options: [
-        { label: 'Our Mission & Vision', section: 'mission' },
-        { label: 'Our Clergy', section: 'clergy' },
-        { label: 'Founders', section: 'founders' },
-      ]
-    },
-    { label: 'Events', to: '/events' },
-    { label: 'Locations', to: '/locations' },
-    { label: 'Social Links', to: '/gtm_socials' },
-  ];
+  // Memoize nav links
+  const navLinks = useMemo(() => NAV_LINKS, []);
 
   return (
     <>
@@ -71,7 +111,7 @@ const Navbar = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Typography variant="subtitle2" align="center">
+          <Typography variant="subtitle2" align="center" sx={{ fontSize: '0.875rem' }}>
             Grace and Truth Ministries
           </Typography>
         </Container>
@@ -91,35 +131,7 @@ const Navbar = () => {
         <Container maxWidth="lg">
           <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px !important' }}>
             {/* Logo */}
-            <NavLink to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Box
-                display="flex"
-                alignItems="center"
-                sx={{
-                  backgroundColor: 'transparent',
-                  padding: 0,
-                  margin: 0,
-                }}
-              >
-                <img
-                  src={off_logo}
-                  alt="GTM Logo"
-                  style={{
-                    width: 46,
-                    height: 'auto',
-                    marginRight: 8,
-                    backgroundColor: 'transparent',
-                    display: 'block',
-                    border: 'none',
-                    boxShadow: 'none',
-                  }}
-                />
-                <Typography variant="h6" fontWeight={700} className="text-indigo-800">
-                  GTM Ministries
-                </Typography>
-
-              </Box>
-            </NavLink>
+            <Logo />
 
             {/* Desktop Links */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
@@ -137,7 +149,8 @@ const Navbar = () => {
                         transition: 'all 0.3s ease',
                         cursor: 'pointer',
                         display: 'flex',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        userSelect: 'none',
                       }}
                     >
                       {item.label}
@@ -146,6 +159,7 @@ const Navbar = () => {
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"
+                        aria-hidden="true"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
@@ -155,9 +169,6 @@ const Navbar = () => {
                       anchorEl={aboutMenuAnchor}
                       open={Boolean(aboutMenuAnchor)}
                       onClose={handleAboutMenuClose}
-                      MenuListProps={{
-                        'aria-labelledby': 'about-menu-button',
-                      }}
                       PaperProps={{
                         elevation: 3,
                         sx: {
@@ -181,11 +192,9 @@ const Navbar = () => {
                             },
                           }}
                         >
-                          <Box>
-                            <Typography variant="body1" fontWeight={500}>
-                              {option.label}
-                            </Typography>
-                          </Box>
+                          <Typography variant="body1" fontWeight={500}>
+                            {option.label}
+                          </Typography>
                         </MenuItem>
                       ))}
                     </Menu>
@@ -196,9 +205,8 @@ const Navbar = () => {
                     to={item.to}
                     style={({ isActive }) => ({
                       textDecoration: 'none',
-                     color: isActive ? '#3730a3' : 'inherit',
-                     fontWeight: isActive ? 600 : 400,
-
+                      color: isActive ? '#3730a3' : 'inherit',
+                      fontWeight: isActive ? 600 : 400,
                       padding: '8px 12px',
                       borderRadius: '4px',
                       transition: 'all 0.3s ease',
@@ -215,6 +223,7 @@ const Navbar = () => {
               color="inherit"
               onClick={toggleDrawer(true)}
               sx={{ display: { md: 'none' }, color: 'text.primary' }}
+              aria-label="open navigation menu"
             >
               <MenuIcon />
             </IconButton>
@@ -238,12 +247,13 @@ const Navbar = () => {
             p: 2,
             background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%)',
           }}
+          role="navigation"
         >
           <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
             <Typography variant="h6" fontWeight={700}>
               GTM Ministries
             </Typography>
-            <IconButton onClick={toggleDrawer(false)}>
+            <IconButton onClick={toggleDrawer(false)} aria-label="close navigation menu">
               <CloseIcon />
             </IconButton>
           </Box>
@@ -338,4 +348,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
