@@ -9,15 +9,7 @@ const Events = lazy(() => import('../pages/Events'));
 const AboutPage = lazy(() => import('../pages/About'));
 const BranchesPage = lazy(() => import('../pages/Locations'));
 const SocialsPage = lazy(() => import('../pages/Socials'));
-
-const NotFound = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-6xl font-bold text-indigo-800 mb-4">404</h1>
-      <p className="text-2xl text-gray-600">Page Not Found</p>
-    </div>
-  </div>
-);
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 const AppRoutes = () => {
   return (
@@ -63,7 +55,14 @@ const AppRoutes = () => {
             </Suspense>
           } 
         />
-        <Route path="*" element={<NotFound />} />
+        <Route 
+          path="*" 
+          element={
+            <Suspense fallback={<LoadingSpinner />}>
+              <NotFound />
+            </Suspense>
+          } 
+        />
       </Route>
     </Routes>
   );
