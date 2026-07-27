@@ -91,7 +91,7 @@ export const branches = [
     services: "Saturday 9am to 1pm",
     img: oriang,
     pastors: [
-      { name: "Pastor John Ouru", contact: "+254 768 553566" }
+      { name: "Pastor John Onyango", contact: "+254 768 553566" }
     ]
   },
   {
@@ -131,7 +131,7 @@ export const branches = [
     services: "Saturday 9am to 1pm",
     img: br9,
     pastors: [
-      { name: "Pastor Evaline", contact: "+254 728 092235" }
+      { name: "Pastor Evaline", contact: "+254 728 309211" }
     ]
   },
   {

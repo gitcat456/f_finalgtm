@@ -5,8 +5,6 @@ import oriang from "../assets/oriang_pastor.JPG";
 import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
-import rawinji from "../assets/rawinji_pastor.jpeg";
-import matharedp from "../assets/matharedp.jpg";
 import plily from "../assets/plily.png";
 import prose from "../assets/pRose.jpg";
 import pJamo from "../assets/jamo.jpg";
