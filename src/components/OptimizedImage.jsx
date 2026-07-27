@@ -33,27 +33,38 @@ const OptimizedImage = React.memo(({
     onLoad();
   };
 
+  // Helper to safely swap extensions, preserving query strings if any
+  const getFormatSrc = (sourceUrl, ext) => {
+    if (!sourceUrl || typeof sourceUrl !== 'string') return sourceUrl;
+    // Strip query params and hash for extension check, though unlikely in Vite imports
+    const basePath = sourceUrl.split('?')[0].split('#')[0];
+    if (basePath.match(/\.(jpg|jpeg|png|webp|avif)$/i)) {
+      return sourceUrl.replace(/\.(jpg|jpeg|png|webp|avif)([?#].*)?$/i, `.${ext}$2`);
+    }
+    return sourceUrl;
+  };
+
   return (
     <Box
       sx={{
         position: 'relative',
         overflow: 'hidden',
-        backgroundColor: loaded ? 'transparent' : 'rgb(229, 231, 235)',
+        backgroundColor: loaded ? 'transparent' : 'rgb(243, 244, 246)', // gray-100
         ...sx,
       }}
-      className={className}
+      className={`image-container ${className}`}
     >
       <picture>
-        {/* WebP format */}
+        {/* AVIF format (prefer this over WebP) */}
         <source 
-          srcSet={src.replace(/\.(jpg|png)$/, '.webp')} 
-          type="image/webp"
+          srcSet={getFormatSrc(src, 'avif')} 
+          type="image/avif"
           sizes={sizes}
         />
-        {/* AVIF format */}
+        {/* WebP format */}
         <source 
-          srcSet={src.replace(/\.(jpg|png)$/, '.avif')} 
-          type="image/avif"
+          srcSet={getFormatSrc(src, 'webp')} 
+          type="image/webp"
           sizes={sizes}
         />
         {/* Fallback */}
@@ -80,18 +91,15 @@ const OptimizedImage = React.memo(({
       {/* Loading skeleton */}
       {!loaded && !error && (
         <Box
+          className="skeleton"
           sx={{
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.1)',
-            animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            '@keyframes pulse': {
-              '0%, 100%': { opacity: 1 },
-              '50%': { opacity: 0.5 },
-            },
+            zIndex: 1,
+            opacity: 0.7
           }}
         />
       )}

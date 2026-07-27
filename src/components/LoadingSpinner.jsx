@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Typography } from '@mui/material';
 
 const LoadingSpinner = () => {
   return (
@@ -8,16 +8,27 @@ const LoadingSpinner = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '400px',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        minHeight: '60vh',
+        width: '100%',
+        backgroundColor: 'transparent',
       }}
     >
-      <Box sx={{ textAlign: 'center', color: 'white' }}>
+      <Box sx={{ textAlign: 'center' }}>
         <CircularProgress 
-          size={60} 
-          sx={{ color: 'white', mb: 2 }}
+          size={50} 
+          thickness={4}
+          sx={{ color: '#4f46e5', mb: 2 }} // tailwind primary-600
         />
-        <p className="text-lg font-semibold">Loading...</p>
+        <Typography 
+          variant="h6" 
+          sx={{ 
+            color: '#4f46e5',
+            fontWeight: 600,
+            fontFamily: "'Inter', sans-serif"
+          }}
+        >
+          Loading...
+        </Typography>
       </Box>
     </Box>
   );

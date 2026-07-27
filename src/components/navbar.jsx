@@ -1,5 +1,5 @@
-// src/components/Navbar.jsx
-import React, { useState, useCallback, useMemo } from 'react';
+// src/components/navbar.jsx
+import React, { useState, useCallback } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItemButton, ListItemText, Box, Container, Divider, Menu, MenuItem, Collapse } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -8,7 +8,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavLink, useNavigate } from 'react-router-dom';
 import off_logo from '../assets/off_logo.png';
 
-// Memoize nav links to prevent recalculation
+// Static nav links outside component
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { 
@@ -38,23 +38,67 @@ const Logo = React.memo(() => (
         margin: 0,
       }}
     >
-      <img
-        src={off_logo}
-        alt="GTM Logo"
-        loading="eager"
-        width={46}
-        height="auto"
-        style={{
-          marginRight: 8,
-          backgroundColor: 'transparent',
-          display: 'block',
-          border: 'none',
-          boxShadow: 'none',
+      {/* Circular glowing logo container */}
+      <Box
+        sx={{
+          width: 48,
+          height: 48,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          marginRight: '10px',
+          flexShrink: 0,
+          border: '2px solid #4f46e5',
+          animation: 'logoPulse 2.5s ease-in-out infinite',
         }}
-      />
-      <Typography variant="h6" fontWeight={700} className="text-indigo-800">
-        GTM Ministries
-      </Typography>
+      >
+        <img
+          src={off_logo}
+          alt="GTM Logo"
+          loading="eager"
+          width={48}
+          height={48}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+            backgroundColor: 'transparent',
+          }}
+        />
+      </Box>
+      {/* Two-tone brand text */}
+      <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 800,
+            fontSize: '1.15rem',
+            letterSpacing: '-0.02em',
+            background: 'linear-gradient(135deg, #4f46e5, #9333ea)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            lineHeight: 1.2,
+          }}
+        >
+          GTM
+        </Typography>
+        <Typography
+          variant="caption"
+          sx={{
+            fontFamily: "'Georgia', serif",
+            fontWeight: 400,
+            fontSize: '0.7rem',
+            color: '#6b21a8',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            lineHeight: 1.2,
+          }}
+        >
+          Ministries
+        </Typography>
+      </Box>
     </Box>
   </NavLink>
 ));
@@ -91,23 +135,16 @@ const Navbar = () => {
     setMobileAboutOpen(false);
   }, [navigate]);
 
-  // Memoize nav links
-  const navLinks = useMemo(() => NAV_LINKS, []);
-
   return (
     <>
-      {/* Top Banner with Gradient */}
+      {/* Top Banner with Gradient - Now part of normal flow */}
       <Box 
         sx={{ 
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
+          position: 'relative',
           background: 'linear-gradient(to right, #1e3a8a, #6d28d9)',
-          opacity: 0.95,
           color: 'white',
           py: 1,
-          zIndex: (theme) => theme.zIndex.appBar - 1,
+          zIndex: (theme) => theme.zIndex.appBar + 1,
         }}
       >
         <Container maxWidth="lg">
@@ -125,7 +162,6 @@ const Navbar = () => {
         sx={{ 
           top: 0,
           zIndex: (theme) => theme.zIndex.appBar,
-          mt: '40px',
         }}
       >
         <Container maxWidth="lg">
@@ -135,7 +171,7 @@ const Navbar = () => {
 
             {/* Desktop Links */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-              {navLinks.map((item) => (
+              {NAV_LINKS.map((item) => (
                 item.hasSubmenu ? (
                   <Box key={item.to}>
                     <div
@@ -152,6 +188,9 @@ const Navbar = () => {
                         alignItems: 'center',
                         userSelect: 'none',
                       }}
+                      role="button"
+                      aria-haspopup="true"
+                      aria-expanded={Boolean(aboutMenuAnchor)}
                     >
                       {item.label}
                       <svg 
@@ -211,6 +250,7 @@ const Navbar = () => {
                       borderRadius: '4px',
                       transition: 'all 0.3s ease',
                     })}
+                    aria-current={({ isActive }) => isActive ? "page" : undefined}
                   >
                     {item.label}
                   </NavLink>
@@ -248,6 +288,7 @@ const Navbar = () => {
             background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%)',
           }}
           role="navigation"
+          aria-label="Mobile Navigation"
         >
           <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
             <Typography variant="h6" fontWeight={700}>
@@ -262,7 +303,7 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <List>
-            {navLinks.map((item) => (
+            {NAV_LINKS.map((item) => (
               item.hasSubmenu ? (
                 <Box key={item.to}>
                   <ListItemButton
@@ -271,6 +312,7 @@ const Navbar = () => {
                       borderRadius: 1,
                       mb: 0.5,
                     }}
+                    aria-expanded={mobileAboutOpen}
                   >
                     <ListItemText 
                       primary={item.label} 
@@ -310,6 +352,7 @@ const Navbar = () => {
                       fontWeight: 600,
                     },
                   }}
+                  aria-current={({ isActive }) => isActive ? "page" : undefined}
                 >
                   <ListItemText 
                     primary={item.label} 
