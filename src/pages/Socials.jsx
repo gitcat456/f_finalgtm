@@ -2,6 +2,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import praiseBg from '../assets/praise.png';
+import { getOptimizedImageUrl } from '../utils/cloudinary';
+
+// Hero background — width 1920 (hero/background)
+const HERO_BG_URL = getOptimizedImageUrl(
+  'https://res.cloudinary.com/dyy3aepmu/image/upload/v1785607551/praise_vov6j0.png',
+  1920
+);
 
 const SocialsPage = () => {
   const [copied, setCopied] = useState(null);
@@ -82,12 +89,12 @@ const SocialsPage = () => {
       <div className="relative py-20 md:py-24 overflow-hidden rounded-b-3xl mb-12 shadow-sm">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 opacity-95"></div>
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30"
-            style={{ backgroundImage: `url(${praiseBg})` }}
+            style={{ backgroundImage: `url(${HERO_BG_URL})` }}
           ></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <motion.div
@@ -120,7 +127,7 @@ const SocialsPage = () => {
               Follow us on social media to stay updated with our events, sermons, and community activities.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {socialLinks.map((social, index) => (
               <motion.div
@@ -138,11 +145,11 @@ const SocialsPage = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 ml-5 tracking-tight">{social.platform}</h3>
                   </div>
-                  
+
                   <p className="text-gray-600 mb-8 leading-relaxed flex-grow">
                     {social.description}
                   </p>
-                  
+
                   {social.isWhatsApp ? (
                     <div className="space-y-5 mt-auto">
                       <div className="bg-green-50 p-5 rounded-xl border border-green-100">
@@ -156,7 +163,7 @@ const SocialsPage = () => {
                           Click below to instantly join our WhatsApp group. No need to save contacts or send messages!
                         </p>
                       </div>
-                      
+
                       <a
                         href={social.link}
                         target="_blank"
@@ -188,7 +195,7 @@ const SocialsPage = () => {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Copy Success Message */}
           <AnimatePresence>
             {copied && (
@@ -207,48 +214,52 @@ const SocialsPage = () => {
           </AnimatePresence>
 
           {/* Additional Information */}
-          <div className="mt-16 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-8 md:p-12 border border-primary-100 shadow-sm relative overflow-hidden">
-            <h3 className="text-2xl md:text-3xl font-bold text-primary-900 mb-8 text-center tracking-tight">Stay Connected</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="mt-16 relative overflow-hidden rounded-3xl bg-gradient-to-r from-gray-900 via-indigo-950 to-purple-950 p-8 md:p-12 text-white shadow-2xl border border-indigo-500/20">
+            {/* Ambient background glow elements */}
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-purple-600 opacity-20 blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-indigo-600 opacity-20 blur-3xl pointer-events-none"></div>
+
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center tracking-tight relative z-10">Stay Connected</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
               <div>
-                <h4 className="font-semibold text-primary-800 mb-5 text-lg">Why Follow Us?</h4>
-                <ul className="space-y-4 text-gray-700">
+                <h4 className="font-semibold text-indigo-300 mb-5 text-lg">Why Follow Us?</h4>
+                <ul className="space-y-4 text-gray-200">
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-secondary-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-purple-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="leading-relaxed">Get updates about upcoming events and services</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-secondary-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-purple-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="leading-relaxed">Watch sermons and worship sessions anytime</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-secondary-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-purple-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="leading-relaxed">Connect with other church members</span>
                   </li>
                   <li className="flex items-start">
-                    <svg className="w-5 h-5 text-secondary-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-purple-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="leading-relaxed">Receive daily inspiration and devotionals</span>
                   </li>
                 </ul>
               </div>
-              
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                <h4 className="font-semibold text-primary-800 mb-4 text-lg">Need Help?</h4>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+
+              <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-white/10 text-white">
+                <h4 className="font-semibold text-indigo-300 mb-4 text-lg">Need Help?</h4>
+                <p className="text-gray-300 mb-6 leading-relaxed">
                   If you're having trouble joining any of our groups or connecting with us on social media, please contact our media team for assistance.
                 </p>
-                <div className="bg-primary-50 p-5 rounded-xl border border-primary-100">
-                  <p className="text-primary-900 font-bold mb-2">Media Team Contact:</p>
-                  <a href="mailto:migirecomputers@gmail.com" className="text-primary-700 block mb-1 hover:underline">migirecomputers@gmail.com</a>
-                  <a href="tel:+254790526387" className="text-primary-700 block hover:underline">+254 790 526 387</a>
+                <div className="bg-white/10 p-5 rounded-xl border border-white/10">
+                  <p className="text-white font-bold mb-2">Media Team Contact:</p>
+                  <a href="mailto:migirecomputers@gmail.com" className="text-indigo-300 block mb-1 hover:underline hover:text-white">migirecomputers@gmail.com</a>
+                  <a href="tel:+254790526387" className="text-indigo-300 block hover:underline hover:text-white">+254 790 526 387</a>
                 </div>
               </div>
             </div>
