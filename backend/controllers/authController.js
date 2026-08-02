@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import ApiError from '../utils/ApiError.js';
+import { PerfTimer } from '../utils/performanceLogger.js';
 
 export const login = async (req, res, next) => {
   try {
@@ -26,14 +27,14 @@ export const login = async (req, res, next) => {
     const token = jwt.sign(
       { id: user._id, role: user.role, username: user.username },
       process.env.JWT_SECRET || 'supersecretjwtkeyforgtm2026',
-      { expiresIn: '24h' }
+      { expiresIn: '1h' }
     );
 
     // Set cookie
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 24 * 60 * 60 * 1000 // 24 hours
+      maxAge: 1 * 60 * 60 * 1000 // 1 hour
     });
 
     res.status(200).json({
@@ -66,15 +67,30 @@ export const logout = async (req, res, next) => {
 };
 
 export const getMe = async (req, res, next) => {
+  const timer = new PerfTimer('/api/auth/me');
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const cStart = process.hrtime.bigint();
+    // req.user was already fetched in protect middleware — zero redundant DB call
+    const user = req.user;
     if (!user) {
       return next(new ApiError(404, 'User not found'));
     }
-    res.status(200).json({
-      status: 'success',
-      user
-    });
+    const cEnd = process.hrtime.bigint();
+    timer.recordController(Number(cEnd - cStart) / 1e6);
+
+    return timer.sendJsonResponse(
+      res,
+      200,
+      {
+        status: 'success',
+        user: {
+          id: user.id || user._id,
+          username: user.username,
+          role: user.role,
+        },
+      },
+      req.method
+    );
   } catch (error) {
     next(error);
   }

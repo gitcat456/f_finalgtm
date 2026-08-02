@@ -28,11 +28,12 @@ export const protect = async (req, res, next) => {
     }
 
     // Check if user still exists
-    const currentUser = await User.findById(decoded.id);
+    const currentUser = await User.findById(decoded.id).select('_id username role').lean();
     if (!currentUser) {
       return next(new ApiError(401, 'The user belonging to this token no longer exists.'));
     }
 
+    currentUser.id = currentUser._id.toString();
     // Grant access to protected route
     req.user = currentUser;
     next();
