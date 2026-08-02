@@ -25,7 +25,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Enable CORS
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",           // Vite dev server
+      "https://gtmchurch.co.ke",         // Production frontend
+      "https://www.gtmchurch.co.ke",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // Cookie parsing
 app.use(cookieParser());
