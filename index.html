@@ -52,10 +52,38 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <!-- Skip to main content link for accessibility 
+    <a href="#main-content" class="sr-only">Skip to main content</a>  -->Grace and Truth Ministries
     
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant HTML/CSS Skeleton (rendered 0ms before JS bundle loads) -->
+      <style>
+        @keyframes htmlShimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .html-skel {
+          background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+          background-size: 200% 100%;
+          animation: htmlShimmer 1.5s infinite;
+          border-radius: 8px;
+        }
+      </style>
+      <div style="min-height:100vh;background:#f9fafb;">
+        <!-- Navbar Skeleton -->
+        <div style="height:72px;background:#ffffff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 24px;">
+          <div class="html-skel" style="width:180px;height:36px;"></div>
+          <div style="display:flex;gap:24px;">
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+          </div>
+        </div>
+        <!-- Hero Section Skeleton -->
+        <div class="html-skel" style="height:70vh;width:100%;border-radius:0;"></div>
+      </div>
+    </div>
     
     <!-- Main app script with module support -->
     <script type="module" src="/src/main.jsx"></script>
