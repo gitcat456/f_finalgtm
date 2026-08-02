@@ -15,7 +15,7 @@ const quickLinks = ['Home', 'About Us', 'Events', 'Locations', 'Social Links'];
 const serviceTimes = [
   { day: 'Saturday', time: '9:00 AM - 1:00 PM' },
   { day: 'Wednesday', time: '6:00 PM' },
-  { day: 'Friday Verspers', time: '6:00 PM' }
+  { day: 'Friday Vespers', time: '6:00 PM' }
 ];
 
 const linkMap = {
@@ -25,6 +25,15 @@ const linkMap = {
   'Locations': '/locations',
   'Social Links': '/gtm_socials'
 };
+
+const ContactItem = React.memo(({ icon, text }) => (
+  <Stack direction="row" alignItems="center">
+    {React.cloneElement(icon, { sx: { color: '#6366F1', mr: 1.5 } })}
+    <Typography variant="body2" color="grey.300">
+      {text}
+    </Typography>
+  </Stack>
+));
 
 const Footer = () => {
   const currentYear = useMemo(() => new Date().getFullYear(), []);
@@ -57,13 +66,31 @@ const Footer = () => {
               Spreading the gospel of grace and truth to all nations.
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <IconButton href="#" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}>
+              <IconButton 
+                href="https://www.facebook.com/profile.php?id=100064719998736" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}
+              >
                 <FacebookIcon />
               </IconButton>
-              <IconButton href="#" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}>
+              <IconButton 
+                href="https://www.youtube.com/@graceandtruthministriesglobal" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}
+              >
                 <YouTubeIcon />
               </IconButton>
-              <IconButton href="#" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}>
+              <IconButton 
+                href="https://chat.whatsapp.com/JJnmLEur8OyKkFWOS6tDY8?mode=ems_copy_t" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }}
+              >
                 <WhatsAppIcon />
               </IconButton>
             </Box>
@@ -84,7 +111,8 @@ const Footer = () => {
                       variant="body2"
                       sx={{
                         color: isActive ? '#6366F1' : 'grey.300',
-                        '&:hover': { color: '#6366F1' }
+                        '&:hover': { color: '#6366F1' },
+                        transition: 'color 0.2s'
                       }}
                     >
                       {label}
@@ -97,17 +125,17 @@ const Footer = () => {
 
           {/* Contact Us */}
           <Box>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 500, color: '#6366F1'  }}>Contact Us</Typography>
+            <Typography variant="h6" sx={{ mb: 2, fontWeight: 500, color: '#6366F1' }}>Contact Us</Typography>
             <Stack spacing={1.5}>
-              <ContactItem icon={<RoomIcon sx={{ color: '#6366F1' }}/>} text="Mathare 4A, Nairobi, Kenya" />
-              <ContactItem icon={<PhoneIcon sx={{ color: '#6366F1' }} />} text="+254 717508987" />
-              <ContactItem icon={<EmailIcon sx={{ color: '#6366F1' }}/>} text="graceandtruthministrychurch@gmail.com" />
+              <ContactItem icon={<RoomIcon />} text="Mathare 4A, Nairobi, Kenya" />
+              <ContactItem icon={<PhoneIcon />} text="+254 717508987" />
+              <ContactItem icon={<EmailIcon />} text="graceandtruthministries2003@gmail.com" />
             </Stack>
           </Box>
 
           {/* Service Times */}
           <Box>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>Service Times</Typography>
+            <Typography variant="h6" sx={{ mb: 2, fontWeight: 500, color: '#6366F1' }}>Service Times</Typography>
             <Stack spacing={1}>
               {serviceTimes.map((service) => (
                 <Box key={service.day} sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -128,14 +156,5 @@ const Footer = () => {
     </Box>
   );
 };
-
-const ContactItem = React.memo(({ icon, text }) => (
-  <Stack direction="row" alignItems="center">
-    {React.cloneElement(icon, { sx: { color: 'primary.light', mr: 1.5 } })}
-    <Typography variant="body2" color="grey.300">
-      {text}
-    </Typography>
-  </Stack>
-));
 
 export default React.memo(Footer);

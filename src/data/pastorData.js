@@ -1,15 +1,15 @@
 import pdan from "../assets/pdan.jpg";
 import pSusan from "../assets/pSusan.jpg";
 import pastor from "../assets/pdede.png";
-import oriang from "../assets/oriang_pastor.jpeg";
-import pas from "../assets/Bishop.png";
+import oriang from "../assets/oriang_pastor.JPG";
+import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
 import kanyipir from "../assets/kanyipir_pastor.jpeg";
-import rawinji from "../assets/rawinji_pastor.jpeg";
-import matharedp from "../assets/matharedp.jpg";
 import plily from "../assets/plily.png";
 import prose from "../assets/pRose.jpg";
-import pJamo from "../assets/jamo.jpg"
+import pJamo from "../assets/jamo.jpg";
+import pEva from "../assets/pEva.avif";
+import pSamy from "../assets/pSamy.avif";
 
 // Pastor images mapping
 export const pastorImages = {
@@ -23,6 +23,9 @@ export const pastorImages = {
   "Pastor John Ouru": oriang,
   "Gibson Onunga": pas,
   "Teresa Owiti": past,
+  "Pastor Mathews Bollo": kanyipir,
+  "Pastor Evaline": pEva,
+  "Pastor Samuel Muga": pSamy,
 };
 
 // Default pastor image if not found

@@ -2,12 +2,101 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>f_finalgtm</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Grace and Truth Ministries - Faith, Community & Spiritual Growth</title>
+    <meta name="description" content="Grace and Truth Ministries - A Pentecostal church dedicated to worship, prayer, and spiritual growth. Join us for inspiring services and community fellowship." />
+    <meta name="keywords" content="church, Pentecostal, worship, faith, ministry, prayer, spiritual growth" />
+    <meta name="author" content="Grace and Truth Ministries" />
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://graceandtruthministries.com/" />
+    <meta property="og:title" content="Grace and Truth Ministries" />
+    <meta property="og:description" content="A Pentecostal church dedicated to worship, prayer, and spiritual growth." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Grace and Truth Ministries" />
+    <meta property="twitter:description" content="A Pentecostal church dedicated to worship, prayer, and spiritual growth." />
+    
+    <!-- Favicon & Theme Color -->
+    <link rel="icon" type="image/svg+xml" href="/real_icon.svg" />
+    <meta name="theme-color" content="#3730a3" />
+    
+    <!-- Performance Optimizations -->
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    
+    <!-- Preconnect for critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Web Fonts (async loaded) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://graceandtruthministries.com/" />
+    
+    <!-- Accessibility -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- MOBILE APP SUPPORT -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="GTM Church" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Skip to main content link for accessibility 
+    <a href="#main-content" class="sr-only">Skip to main content</a>  -->Grace and Truth Ministries
+    
+    <div id="root">
+      <!-- Instant HTML/CSS Skeleton (rendered 0ms before JS bundle loads) -->
+      <style>
+        @keyframes htmlShimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .html-skel {
+          background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+          background-size: 200% 100%;
+          animation: htmlShimmer 1.5s infinite;
+          border-radius: 8px;
+        }
+      </style>
+      <div style="min-height:100vh;background:#f9fafb;">
+        <!-- Navbar Skeleton -->
+        <div style="height:72px;background:#ffffff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;padding:0 24px;">
+          <div class="html-skel" style="width:180px;height:36px;"></div>
+          <div style="display:flex;gap:24px;">
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+            <div class="html-skel" style="width:60px;height:20px;"></div>
+          </div>
+        </div>
+        <!-- Hero Section Skeleton -->
+        <div class="html-skel" style="height:70vh;width:100%;border-radius:0;"></div>
+      </div>
+    </div>
+    
+    <!-- Main app script with module support -->
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Service Worker Registration for PWA capabilities -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('SW registration failed: ', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>
