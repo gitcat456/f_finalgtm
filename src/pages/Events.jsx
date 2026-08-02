@@ -1,8 +1,11 @@
 // src/pages/Events.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import campPoster from '../assets/event2.jpg';
 import youthCampPoster from '../assets/event1.jpg';
 import { motion } from 'framer-motion';
+import { EventsPageSkeleton } from '../components/skeletons/PageSkeletons';
+import { FadeIn } from '../components/skeletons/Skeleton';
+import { getOptimizedImageUrl } from '../utils/cloudinary';
 
 // Static Data Moved Outside Component
 const EVENTS_DATA = [
@@ -38,7 +41,7 @@ const EVENTS_DATA = [
     note: "The program on Saturday 16th will start at 9:00am EAT.",
     monthYear: "AUGUST, 2025",
     tag: "ALL ARE WELCOMED",
-    vision: "Empowered by the Spirit of God, we envision a gathering where hearts are revived, dry bones live again, and the breath of the Lord brings renewal to every soul. Guided by the theme ‘Let the Wind Blow’ (Ezekiel 37:9), this camp meeting seeks to awaken spiritual passion, ignite fresh fire for mission, and release a mighty move of the Holy Spirit that transforms lives, families, and communities for the glory of God.",
+    vision: "Empowered by the Spirit of God, we envision a gathering where hearts are revived, dry bones live again, and the breath of the Lord brings renewal to every soul. Guided by the theme 'Let the Wind Blow' (Ezekiel 37:9), this camp meeting seeks to awaken spiritual passion, ignite fresh fire for mission, and release a mighty move of the Holy Spirit that transforms lives, families, and communities for the glory of God.",
     mission: "Make disciples of Jesus Christ who live as His loving witnesses and proclaim to all people the everlasting gospel of the Three Angels' Messages in preparation for His soon return (Matt 28:18-20, Acts 1:8, Rev 14:6-12).",
     image: campPoster,
   },
@@ -63,13 +66,55 @@ const EVENTS_DATA = [
 ];
 
 const Event = () => {
-  const [currentEvent, setCurrentEvent] = useState(2); // Default to ongoing/latest event
-  const totalEvents = EVENTS_DATA.length;
+  const [eventsData, setEventsData] = useState([]);
+  const [currentEvent, setCurrentEvent] = useState(1); // Default to first event
+  const [loading, setLoading] = useState(true);
+  const totalEvents = eventsData.length;
 
-  const handlePrev = () => setCurrentEvent(prev => (prev > 1 ? prev - 1 : totalEvents));
-  const handleNext = () => setCurrentEvent(prev => (prev < totalEvents ? prev + 1 : 1));
+  // Load posted events from the API; fall back to static data if backend is offline
+  useEffect(() => {
+    async function loadEvents() {
+      setLoading(true);
+      try {
+        const res = await fetch('http://localhost:5000/api/events?posted=true');
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        const fetched = data?.data?.events;
+        if (Array.isArray(fetched) && fetched.length > 0) {
+          setEventsData(fetched);
+          setCurrentEvent(fetched[0]._id || fetched[0].id || 1);
+        } else {
+          setEventsData(EVENTS_DATA);
+          setCurrentEvent(EVENTS_DATA[0].id);
+        }
+      } catch {
+        // Backend offline — static data fallback
+        setEventsData(EVENTS_DATA);
+        setCurrentEvent(EVENTS_DATA[0].id);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadEvents();
+  }, []);
 
-  const event = EVENTS_DATA.find(e => e.id === currentEvent) || EVENTS_DATA[0];
+  const handlePrev = () => {
+    const idx = eventsData.findIndex((e) => (e._id || e.id) === currentEvent);
+    const prevIdx = idx > 0 ? idx - 1 : eventsData.length - 1;
+    setCurrentEvent(eventsData[prevIdx]._id || eventsData[prevIdx].id);
+  };
+
+  const handleNext = () => {
+    const idx = eventsData.findIndex((e) => (e._id || e.id) === currentEvent);
+    const nextIdx = idx < eventsData.length - 1 ? idx + 1 : 0;
+    setCurrentEvent(eventsData[nextIdx]._id || eventsData[nextIdx].id);
+  };
+
+  if (loading) {
+    return <EventsPageSkeleton />;
+  }
+
+  const event = eventsData.find((e) => (e._id || e.id) === currentEvent) || eventsData[0];
 
   // Status color mapping using design tokens
   const statusColors = {
@@ -79,7 +124,8 @@ const Event = () => {
   };
 
   return (
-    <div className="section-container bg-gray-50/50 min-h-screen pt-8">
+    <FadeIn>
+      <div className="section-container bg-gray-50/50 min-h-screen pt-8">
       <div className="content-container">
         
         {/* Header */}
@@ -111,7 +157,7 @@ const Event = () => {
           {/* Left: Event Poster */}
           <div className="relative lg:w-1/2 min-h-[300px] md:min-h-[500px]">
             <img 
-              src={event.image} 
+              src={getOptimizedImageUrl(event.image, 800)} 
               alt={event.title} 
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
@@ -231,30 +277,34 @@ const Event = () => {
         
         {/* Event pagination - CSS truncation for mobile */}
         <div className="flex flex-wrap justify-center gap-3 mt-10">
-          {EVENTS_DATA.map((evt) => (
-            <button
-              key={evt.id}
-              onClick={() => setCurrentEvent(evt.id)}
-              className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                currentEvent === evt.id 
-                  ? 'bg-primary-600 text-white shadow-md transform -translate-y-0.5' 
-                  : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
-              }`}
-            >
-              <span className={`w-2.5 h-2.5 rounded-full mr-3 flex-shrink-0 ${
-                evt.status === 'past' ? 'bg-gray-400' :
-                evt.status === 'ongoing' ? 'bg-green-500' : 'bg-primary-500'
-              }`}></span>
-              {/* CSS truncation handles mobile overflow automatically */}
-              <span className="truncate max-w-[120px] sm:max-w-none">
-                {evt.title}
-              </span>
-            </button>
-          ))}
+          {eventsData.map((evt) => {
+            const evtId = evt._id || evt.id;
+            return (
+              <button
+                key={evtId}
+                onClick={() => setCurrentEvent(evtId)}
+                className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  currentEvent === evtId
+                    ? 'bg-primary-600 text-white shadow-md transform -translate-y-0.5'
+                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
+                }`}
+              >
+                <span className={`w-2.5 h-2.5 rounded-full mr-3 flex-shrink-0 ${
+                  evt.status === 'past' ? 'bg-gray-400' :
+                  evt.status === 'ongoing' ? 'bg-green-500' : 'bg-primary-500'
+                }`}></span>
+                {/* CSS truncation handles mobile overflow automatically */}
+                <span className="truncate max-w-[120px] sm:max-w-none">
+                  {evt.title}
+                </span>
+              </button>
+            );
+          })}
         </div>
         
       </div>
     </div>
+    </FadeIn>
   );
 };
 
