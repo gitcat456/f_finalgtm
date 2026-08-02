@@ -6,13 +6,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { NavLink, useNavigate } from 'react-router-dom';
-import off_logo from '../assets/off_logo.png';
+import NavbarLiveBadge from './NavbarLiveBadge';
+import { getOptimizedImageUrl } from '../utils/cloudinary';
 
 // Static nav links outside component
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
-  { 
-    label: 'About Us', 
+  {
+    label: 'About Us',
     to: '/about',
     hasSubmenu: true,
     options: [
@@ -25,6 +26,12 @@ const NAV_LINKS = [
   { label: 'Locations', to: '/locations' },
   { label: 'Social Links', to: '/gtm_socials' },
 ];
+
+// Logo — width 300 (logo)
+const off_logo = getOptimizedImageUrl(
+  "https://res.cloudinary.com/dyy3aepmu/image/upload/v1785606828/off_logo_dz4tio.png",
+  300
+);
 
 // Logo component with optimization
 const Logo = React.memo(() => (
@@ -41,14 +48,14 @@ const Logo = React.memo(() => (
       {/* Circular glowing logo container */}
       <Box
         sx={{
-          width: 48,
-          height: 48,
+          width: 55,
+          height: 55,
           borderRadius: '50%',
           overflow: 'hidden',
           marginRight: '10px',
           flexShrink: 0,
           border: '2px solid #4f46e5',
-          animation: 'logoPulse 2.5s ease-in-out infinite',
+
         }}
       >
         <img
@@ -138,39 +145,48 @@ const Navbar = () => {
   return (
     <>
       {/* Top Banner with Gradient - Now part of normal flow */}
-      <Box 
-        sx={{ 
+      <Box
+        sx={{
           position: 'relative',
-          background: 'linear-gradient(to right, #1e3a8a, #6d28d9)',
+          background: 'linear-gradient(to right, #111827, #1e1b4b, #3b0764)',
           color: 'white',
           py: 1,
           zIndex: (theme) => theme.zIndex.appBar + 1,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
           <Typography variant="subtitle2" align="center" sx={{ fontSize: '0.875rem' }}>
             Grace and Truth Ministries
           </Typography>
+          {/* Desktop/Wide screens: Displayed on the 1st (top) navbar */}
+          <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', right: 16 }}>
+            <NavbarLiveBadge />
+          </Box>
         </Container>
       </Box>
 
       {/* Main Navbar - Sticky */}
-      <AppBar 
-        position="sticky" 
-        color="default" 
+      <AppBar
+        position="sticky"
+        color="default"
         elevation={1}
-        sx={{ 
+        sx={{
           top: 0,
           zIndex: (theme) => theme.zIndex.appBar,
         }}
       >
         <Container maxWidth="lg">
           <Toolbar sx={{ justifyContent: 'space-between', minHeight: '64px !important' }}>
-            {/* Logo */}
-            <Logo />
+            {/* Logo + Mobile Live Badge (Displayed on 2nd navbar on mobile screens) */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1.5, sm: 2.5 } }}>
+              <Logo />
+              <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                <NavbarLiveBadge />
+              </Box>
+            </Box>
 
             {/* Desktop Links */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
               {NAV_LINKS.map((item) => (
                 item.hasSubmenu ? (
                   <Box key={item.to}>
@@ -193,35 +209,48 @@ const Navbar = () => {
                       aria-expanded={Boolean(aboutMenuAnchor)}
                     >
                       {item.label}
-                      <svg 
-                        className="ml-1 h-4 w-4" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
+                      <svg
+                        className="ml-1 h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
                         stroke="currentColor"
                         aria-hidden="true"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
-                    
+
                     <Menu
                       anchorEl={aboutMenuAnchor}
                       open={Boolean(aboutMenuAnchor)}
                       onClose={handleAboutMenuClose}
                       PaperProps={{
-                        elevation: 3,
+                        elevation: 0,
                         sx: {
                           mt: 1.5,
                           minWidth: 240,
                           borderRadius: 2,
                           overflow: 'visible',
-                          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                          backdropFilter: 'blur(20px)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                          '& .MuiMenuItem-root': {
+                            color: '#fff',
+                            '&:hover': {
+                              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                              backdropFilter: 'blur(10px)',
+                            },
+                          },
+                          '& .MuiTypography-root': {
+                            color: 'rgba(255, 255, 255, 0.9)',
+                          },
                         }
                       }}
                     >
                       {item.options.map((option) => (
-                        <MenuItem 
-                          key={option.section} 
+                        <MenuItem
+                          key={option.section}
                           onClick={() => handleAboutOptionClick(option.section)}
                           sx={{
                             py: 1.5,
@@ -314,9 +343,9 @@ const Navbar = () => {
                     }}
                     aria-expanded={mobileAboutOpen}
                   >
-                    <ListItemText 
-                      primary={item.label} 
-                      primaryTypographyProps={{ fontWeight: 500 }} 
+                    <ListItemText
+                      primary={item.label}
+                      primaryTypographyProps={{ fontWeight: 500 }}
                     />
                     {mobileAboutOpen ? <ExpandLess /> : <ExpandMore />}
                   </ListItemButton>
@@ -328,9 +357,9 @@ const Navbar = () => {
                           sx={{ pl: 4, borderRadius: 1, mb: 0.5 }}
                           onClick={() => handleAboutOptionClick(option.section)}
                         >
-                          <ListItemText 
-                            primary={option.label} 
-                            primaryTypographyProps={{ fontWeight: 400 }} 
+                          <ListItemText
+                            primary={option.label}
+                            primaryTypographyProps={{ fontWeight: 400 }}
                           />
                         </ListItemButton>
                       ))}
@@ -354,9 +383,9 @@ const Navbar = () => {
                   }}
                   aria-current={({ isActive }) => isActive ? "page" : undefined}
                 >
-                  <ListItemText 
-                    primary={item.label} 
-                    primaryTypographyProps={{ fontWeight: 500 }} 
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{ fontWeight: 500 }}
                   />
                 </ListItemButton>
               )
