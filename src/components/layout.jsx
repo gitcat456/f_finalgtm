@@ -12,6 +12,7 @@ import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Navbar from './navbar';
 import Footer from './footer';
+import WhatsAppFloatingButton from './WhatsAppFloatingButton';
 
 const Layout = () => (
   <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -24,6 +25,7 @@ const Layout = () => (
       <Outlet />
     </Box>
     <Footer />
+    <WhatsAppFloatingButton />
   </Box>
 );
 
