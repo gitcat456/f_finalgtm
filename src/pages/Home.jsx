@@ -3,6 +3,14 @@ import { motion } from 'framer-motion';
 import { Church, Groups, LibraryBooks, Mic, VolunteerActivism, WavingHand, AccessTime, CalendarToday } from '@mui/icons-material';
 import home from '../assets/home.avif';
 import { Link } from "react-router-dom";
+import WeAreLiveBanner from '../components/WeAreLiveBanner';
+import { getOptimizedImageUrl } from '../utils/cloudinary';
+
+// Hero background — width 1920 (hero/background)
+const HERO_BG_URL = getOptimizedImageUrl(
+  'https://res.cloudinary.com/dyy3aepmu/image/upload/v1785149468/home_ciuqs7.jpg',
+  1920
+);
 
 // Shared animation variants
 const fadeSlideUp = {
@@ -62,9 +70,8 @@ const ServiceCard = memo(({ service, index }) => (
       ease: 'easeOut',
       delay: index * 0.09,
     }}
-    className={`service-card ${
-      service.highlight ? 'border-2 border-primary-600 ring-4 ring-primary-100' : 'border border-gray-200'
-    }`}
+    className={`service-card ${service.highlight ? 'border-2 border-primary-600 ring-4 ring-primary-100' : 'border border-gray-200'
+      }`}
   >
     <div className="flex items-center mb-4">
       <div className="p-3 bg-primary-50 rounded-lg mr-4 text-primary-600">
@@ -143,15 +150,15 @@ const Home = () => {
       <section
         className="hero-section bg-center bg-cover relative text-white px-4"
         style={{
-          backgroundImage: `url(${home})`,
+          backgroundImage: `url(${HERO_BG_URL})`,
           // Removed backgroundAttachment: 'fixed'
         }}
       >
         {/* Overlay gradient for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900/70 to-gray-900/40"></div>
-        
+
         <div className="bg-black/40 backdrop-blur-sm p-8 rounded-2xl max-w-4xl text-center z-10 border border-white/10 shadow-2xl">
-          <motion.blockquote 
+          <motion.blockquote
             className="animate-fade-in"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -171,6 +178,9 @@ const Home = () => {
           </motion.blockquote>
         </div>
       </section>
+
+      {/* Animated Live Stream Banner */}
+      <WeAreLiveBanner />
 
       {/* Service Times Section */}
       <section className="section-container bg-gradient-to-b from-gray-50 to-white">
@@ -204,36 +214,37 @@ const Home = () => {
           {/* Service Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {serviceTimes.map((service, index) => (
-               <ServiceCard key={service.title} service={service} index={index} />
+              <ServiceCard key={service.title} service={service} index={index} />
             ))}
           </div>
 
           {/* CTA Section — fade + slide up */}
           <motion.div
-            className="bg-gradient-to-br from-primary-700 to-secondary-800 rounded-3xl p-10 md:p-16 text-white text-center shadow-elevated relative overflow-hidden"
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-gray-900 via-indigo-950 to-purple-950 p-10 md:p-16 text-white text-center shadow-2xl border border-indigo-500/20"
             variants={fadeSlideUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            {/* Decorative background element */}
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-5 blur-3xl pointer-events-none"></div>
-            
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight relative z-10">Ready to Join Us?</h3>
-            <p className="text-xl mb-10 max-w-2xl mx-auto text-primary-100 relative z-10 font-light leading-relaxed">
+            {/* Ambient background glow elements */}
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-purple-600 opacity-20 blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-indigo-600 opacity-20 blur-3xl pointer-events-none"></div>
+
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight relative z-10 text-white">Ready to Join Us?</h3>
+            <p className="text-xl mb-10 max-w-2xl mx-auto text-gray-200 relative z-10 font-light leading-relaxed">
               We'd love to welcome you to our church family. All are welcome regardless of background or belief.
             </p>
             <div className="flex flex-wrap gap-5 justify-center relative z-10">
               <Link
                 to="/locations"
-                className="btn-base bg-white text-primary-700 hover:bg-gray-50 hover:-translate-y-1 shadow-lg hover:shadow-xl text-lg px-8 py-3.5"
+                className="btn-base bg-indigo-600 text-white hover:bg-indigo-500 hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/30 text-lg px-8 py-3.5 rounded-xl font-semibold transition-all"
               >
                 View Locations
               </Link>
               <Link
                 to="/events"
-                className="btn-base bg-secondary-500 text-white hover:bg-secondary-400 hover:-translate-y-1 shadow-lg hover:shadow-xl text-lg px-8 py-3.5"
+                className="btn-base bg-purple-600 text-white hover:bg-purple-500 hover:-translate-y-1 shadow-lg hover:shadow-purple-500/30 text-lg px-8 py-3.5 rounded-xl font-semibold transition-all"
               >
                 Upcoming Events
               </Link>
