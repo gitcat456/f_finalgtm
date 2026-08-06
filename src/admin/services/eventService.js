@@ -1,7 +1,6 @@
 import { authService } from './authService';
 
-const API_BASE = 'http://localhost:5000/api/events';
-
+const API_BASE = 'https://ffinalgtm-production.up.railway.app/api/events'; 
 const getHeaders = (isFormData = false) => {
   const token = authService.getToken();
   const headers = {};
