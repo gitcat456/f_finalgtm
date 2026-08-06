@@ -1,0 +1,23 @@
+# SEO Configuration for Grace and Truth Ministries
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow sensitive paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /sw.js
+
+# Sitemap location
+Sitemap: https://graceandtruthministries.com/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
+
+# Specific rules for Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0

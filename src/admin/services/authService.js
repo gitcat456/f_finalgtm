@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://ffinalgtm-production.up.railway.app/api';
 
 /**
  * Admin auth service — handles login, logout, token management.
