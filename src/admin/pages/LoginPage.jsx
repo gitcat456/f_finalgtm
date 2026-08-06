@@ -42,27 +42,22 @@ export default function LoginPage() {
     <div className="admin-root">
       <div className="admin-login-bg">
         <div className="admin-login-card">
-          {/* Logo mark */}
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <div
-              style={{
-                width: 56,
-                height: 56,
-                margin: '0 auto 0.75rem',
-                background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
-                borderRadius: '1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#fff',
-                fontWeight: 800,
-                fontSize: '1.5rem',
-                boxShadow: '0 4px 14px rgba(79, 70, 229, 0.35)',
-              }}
-            >
-              G
-            </div>
-          </div>
+{/* Logo mark */}
+<div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+  <img
+    src="https://res.cloudinary.com/dyy3aepmu/image/upload/f_auto,q_auto,c_limit,w_300/v1785606828/off_logo_dz4tio.png"
+    alt="Logo"
+    style={{
+      width: 56,
+      height: 56,
+      margin: '0 auto 0.75rem',
+      display: 'block',
+      borderRadius: '1rem',
+      boxShadow: '0 4px 14px rgba(79, 70, 229, 0.35)',
+      objectFit: 'cover',
+    }}
+  />
+</div>
 
           <h1>Welcome Back</h1>
           <p className="login-subtitle">Sign in to the GTM Admin Dashboard</p>
