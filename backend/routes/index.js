@@ -3,6 +3,7 @@ import healthRoutes from './health.js';
 import authRoutes from './authRoutes.js';
 import branchRoutes from './branchRoutes.js';
 import eventRoutes from './eventRoutes.js';
+import analyticsRoutes from './analyticsRoutes.js';
 
 const router = express.Router();
 
@@ -15,7 +16,8 @@ router.get('/', (req, res) => {
       health: '/api/health',
       auth: '/api/auth',
       branches: '/api/branches',
-      events: '/api/events'
+      events: '/api/events',
+      analytics: '/api/analytics',
     }
   });
 });
@@ -24,6 +26,7 @@ router.use('/health', healthRoutes);
 router.use('/auth', authRoutes);
 router.use('/branches', branchRoutes);
 router.use('/events', eventRoutes);
+router.use('/analytics', analyticsRoutes);
 
 export default router;
 
