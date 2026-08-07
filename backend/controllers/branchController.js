@@ -7,15 +7,40 @@ import {
 } from '../services/cloudinaryService.js';
 import { PerfTimer } from '../utils/performanceLogger.js';
 
-// @desc    Get all branches
+// @desc    Get all branches with server-side pagination and search
 // @route   GET /api/branches
 // @access  Public
 export const getAllBranches = async (req, res, next) => {
   const timer = new PerfTimer('/api/branches');
   try {
+    const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+    // Requirement specifies a maximum of 6 branches per page
+    const limit = Math.min(6, Math.max(1, parseInt(req.query.limit, 10) || 6));
+    const skip = (page - 1) * limit;
+
+    const filter = {};
+    if (req.query.isPosted !== undefined && req.query.isPosted !== '') {
+      filter.isPosted = req.query.isPosted === 'true';
+    }
+
+    if (req.query.search && req.query.search.trim()) {
+      const searchRegex = new RegExp(req.query.search.trim(), 'i');
+      filter.$or = [
+        { name: searchRegex },
+        { location: searchRegex },
+      ];
+    }
+
+    const total = await timer.measureDb(() => Branch.countDocuments(filter));
     const branches = await timer.measureDb(() =>
-      Branch.find().sort({ createdAt: -1 }).lean()
+      Branch.find(filter)
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .lean()
     );
+
+    const totalPages = Math.ceil(total / limit) || 1;
 
     return timer.sendJsonResponse(
       res,
@@ -23,6 +48,10 @@ export const getAllBranches = async (req, res, next) => {
       {
         status: 'success',
         results: branches.length,
+        total,
+        page,
+        totalPages,
+        limit,
         data: {
           branches,
         },
