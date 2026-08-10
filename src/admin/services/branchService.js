@@ -16,13 +16,30 @@ const getHeaders = (isFormData = false) => {
 
 export const branchService = {
   /**
-   * Get all branches.
+   * Get branches with pagination, search, and filtering options.
+   * @param {{ page?: number, limit?: number, search?: string, isPosted?: boolean }} params
    */
-  async getAllBranches() {
-    const res = await fetch(API_BASE);
+  async getAllBranches(params = {}) {
+    const searchParams = new URLSearchParams();
+    if (params.page !== undefined) searchParams.append('page', params.page);
+    if (params.limit !== undefined) searchParams.append('limit', params.limit);
+    if (params.search) searchParams.append('search', params.search);
+    if (params.isPosted !== undefined) searchParams.append('isPosted', params.isPosted);
+
+    const queryString = searchParams.toString();
+    const url = queryString ? `${API_BASE}?${queryString}` : API_BASE;
+
+    const res = await fetch(url);
     const data = await res.json();
     if (!res.ok) throw new Error(data.message || 'Failed to fetch branches');
-    return data.data.branches;
+
+    return {
+      branches: data.data.branches || [],
+      total: data.total ?? data.data.branches?.length ?? 0,
+      page: data.page ?? 1,
+      totalPages: data.totalPages ?? 1,
+      limit: data.limit ?? 6,
+    };
   },
 
   /**
