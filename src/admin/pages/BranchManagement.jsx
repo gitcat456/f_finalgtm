@@ -1,20 +1,26 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { branchService } from '../services/branchService';
 import { useNotification } from '../context/NotificationContext';
 import BranchFormModal from '../components/branches/BranchFormModal';
 import ConfirmDialog from '../components/ui/ConfirmDialog';
 import BranchCard from '../../components/BranchCard';
 import BranchCardSkeleton from '../../components/skeletons/BranchCardSkeleton';
+import Pagination from '../../components/Pagination';
 import { FadeIn } from '../../components/skeletons/Skeleton';
 
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
+const PAGE_SIZE = 6;
+
 export default function BranchManagement() {
   const [branches, setBranches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalBranches, setTotalBranches] = useState(0);
 
   // Modal states
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -28,32 +34,39 @@ export default function BranchManagement() {
 
   const { showSuccess, showError } = useNotification();
 
-  const fetchBranches = useCallback(async () => {
-    setLoading(true);
-    try {
-      const data = await branchService.getAllBranches();
-      setBranches(data);
-    } catch (err) {
-      showError(err.message || 'Failed to load branches.');
-    } finally {
-      setLoading(false);
-    }
-  }, [showError]);
+  const fetchBranches = useCallback(
+    async (page = 1, query = searchQuery) => {
+      setLoading(true);
+      try {
+        const res = await branchService.getAllBranches({
+          page,
+          limit: PAGE_SIZE,
+          search: query,
+        });
+        setBranches(res.branches || []);
+        setTotalPages(res.totalPages || 1);
+        setTotalBranches(res.total || 0);
+      } catch (err) {
+        showError(err.message || 'Failed to load branches.');
+      } finally {
+        setLoading(false);
+      }
+    },
+    [searchQuery, showError]
+  );
 
   useEffect(() => {
-    fetchBranches();
-  }, [fetchBranches]);
+    fetchBranches(currentPage, searchQuery);
+  }, [currentPage, searchQuery, fetchBranches]);
 
-  // Filtered branches
-  const filteredBranches = useMemo(() => {
-    if (!searchQuery.trim()) return branches;
-    const q = searchQuery.toLowerCase();
-    return branches.filter(
-      (b) =>
-        b.name?.toLowerCase().includes(q) ||
-        b.location?.toLowerCase().includes(q)
-    );
-  }, [branches, searchQuery]);
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset to page 1 on new search
+  };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
   // Open Add modal
   const handleOpenAdd = () => {
@@ -87,7 +100,7 @@ export default function BranchManagement() {
 
       await branchService.updateBranch(branch._id, payload);
       showSuccess(`Branch "${branch.name}" is now live on the public frontend!`);
-      fetchBranches();
+      fetchBranches(currentPage, searchQuery);
     } catch (err) {
       showError(err.message || 'Failed to post branch.');
     }
@@ -105,7 +118,7 @@ export default function BranchManagement() {
         showSuccess(`Branch "${formData.get('name')}" posted successfully!`);
       }
       setIsFormOpen(false);
-      fetchBranches();
+      fetchBranches(currentPage, searchQuery);
     } catch (err) {
       showError(err.message || 'Operation failed. Please try again.');
     } finally {
@@ -121,7 +134,7 @@ export default function BranchManagement() {
       await branchService.deleteBranch(deletingBranch._id);
       showSuccess(`Branch "${deletingBranch.name}" was deleted successfully.`);
       setIsConfirmOpen(false);
-      fetchBranches();
+      fetchBranches(currentPage, searchQuery);
     } catch (err) {
       showError(err.message || 'Failed to delete branch.');
     } finally {
@@ -152,22 +165,22 @@ export default function BranchManagement() {
             type="text"
             placeholder="Search branches by name or location..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
           />
         </div>
         <div className="admin-toolbar-stats">
-          Total: <span className="stat-count">{branches.length}</span> branches
+          Total: <span className="stat-count">{totalBranches}</span> branches
         </div>
       </div>
 
-      {/* Main Content Area — Using Reusable BranchCard (Requirement 2) */}
+      {/* Main Content Area */}
       {loading ? (
         <div className="admin-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <BranchCardSkeleton key={i} />
           ))}
         </div>
-      ) : filteredBranches.length === 0 ? (
+      ) : branches.length === 0 ? (
         <div className="admin-empty-state">
           <LocationOnOutlinedIcon style={{ fontSize: 48, color: '#9ca3af' }} />
           <h3>No branches found</h3>
@@ -188,20 +201,31 @@ export default function BranchManagement() {
           )}
         </div>
       ) : (
-        <FadeIn>
-          <div className="admin-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredBranches.map((branch) => (
-              <BranchCard
-                key={branch._id}
-                branch={branch}
-                isAdmin={true}
-                onEdit={handleOpenEdit}
-                onDelete={handleOpenDelete}
-                onPost={handlePostBranch}
-              />
-            ))}
-          </div>
-        </FadeIn>
+        <>
+          <FadeIn>
+            <div className="admin-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {branches.map((branch) => (
+                <BranchCard
+                  key={branch._id}
+                  branch={branch}
+                  isAdmin={true}
+                  onEdit={handleOpenEdit}
+                  onDelete={handleOpenDelete}
+                  onPost={handlePostBranch}
+                />
+              ))}
+            </div>
+          </FadeIn>
+
+          {/* Server-Side Pagination Controls */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            totalItems={totalBranches}
+            pageSize={PAGE_SIZE}
+          />
+        </>
       )}
 
       {/* Form Modal for Create & Edit */}
