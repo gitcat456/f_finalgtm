@@ -18,16 +18,11 @@ export const FOLDERS = {
  */
 export const uploadToCloudinary = (fileBuffer, folder) => {
   return new Promise((resolve, reject) => {
-    const uploadOptions = {
-      resource_type: 'image',
-    };
-
-    if (folder) {
-      uploadOptions.folder = String(folder).trim();
-    }
-
     const uploadStream = cloudinary.uploader.upload_stream(
-      uploadOptions,
+      {
+        folder,
+        resource_type: 'image',
+      },
       (error, result) => {
         if (error) {
           return reject(error);
@@ -51,8 +46,7 @@ export const uploadToCloudinary = (fileBuffer, folder) => {
 export const deleteFromCloudinary = async (publicId) => {
   if (!publicId) return null;
   try {
-    const cleanPublicId = String(publicId).trim();
-    return await cloudinary.uploader.destroy(cleanPublicId);
+    return await cloudinary.uploader.destroy(publicId);
   } catch (error) {
     // Log but don't throw — cleanup failures shouldn't break the main operation
     console.error(`Cloudinary delete failed for ${publicId}:`, error.message);
