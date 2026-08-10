@@ -7,6 +7,7 @@ export const FOLDERS = {
   BRANCHES: 'gtm/branches_pics',
   EVENTS: 'gtm/event_pics',
   CLERGY: 'gtm/clergy_pics',
+  FOUNDERS: 'gtm/founders_pics',
 };
 
 /**

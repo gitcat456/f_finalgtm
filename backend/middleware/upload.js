@@ -39,3 +39,13 @@ export const uploadBranchImage = upload.fields([
  * Event uploads: one event poster image ('image').
  */
 export const uploadEventImage = upload.single('image');
+
+/**
+ * Founder uploads: single founder image ('image').
+ */
+export const uploadFounderImage = upload.single('image');
+
+/**
+ * Clergy uploads: single clergy member image ('image').
+ */
+export const uploadClergyImage = upload.single('image');

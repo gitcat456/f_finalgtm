@@ -4,6 +4,8 @@ import authRoutes from './authRoutes.js';
 import branchRoutes from './branchRoutes.js';
 import eventRoutes from './eventRoutes.js';
 import analyticsRoutes from './analyticsRoutes.js';
+import founderRoutes from './founderRoutes.js';
+import clergyRoutes from './clergyRoutes.js';
 
 const router = express.Router();
 
@@ -18,6 +20,8 @@ router.get('/', (req, res) => {
       branches: '/api/branches',
       events: '/api/events',
       analytics: '/api/analytics',
+      founders: '/api/founders',
+      clergy: '/api/clergy',
     }
   });
 });
@@ -27,6 +31,7 @@ router.use('/auth', authRoutes);
 router.use('/branches', branchRoutes);
 router.use('/events', eventRoutes);
 router.use('/analytics', analyticsRoutes);
+router.use('/founders', founderRoutes);
+router.use('/clergy', clergyRoutes);
 
 export default router;
-
