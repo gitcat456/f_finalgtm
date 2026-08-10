@@ -3,6 +3,7 @@ import DashboardIcon from '@mui/icons-material/DashboardOutlined';
 import LocationCityIcon from '@mui/icons-material/LocationCityOutlined';
 import EventIcon from '@mui/icons-material/EventOutlined';
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import AssessmentIcon from '@mui/icons-material/AssessmentOutlined';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 
 const navSections = [
@@ -15,6 +16,7 @@ const navSections = [
   {
     title: 'Management',
     items: [
+      { label: 'Visitors', path: '/admin/visitors', icon: AssessmentIcon },
       { label: 'Branches', path: '/admin/branches', icon: LocationCityIcon },
       { label: 'Events', path: '/admin/events', icon: EventIcon },
       { label: 'Clergy', path: '/admin/clergy', icon: PeopleIcon },
