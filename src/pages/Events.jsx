@@ -76,7 +76,7 @@ const Event = () => {
     async function loadEvents() {
       setLoading(true);
       try {
-        const res = await fetch('http://localhost:5000/api/events?posted=true');
+        const res = await fetch('https://ffinalgtm-production.up.railway.app/api/events?posted=true');
         if (!res.ok) throw new Error('Network response was not ok');
         const data = await res.json();
         const fetched = data?.data?.events;

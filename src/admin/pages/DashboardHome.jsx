@@ -24,14 +24,14 @@ export default function DashboardHome() {
       setLoading(true);
       try {
         const [branchesRes, eventsRes] = await Promise.allSettled([
-          branchService.getAllBranches(),
+          branchService.getAllBranches({ limit: 1000 }),
           eventService.getAllEvents(),
         ]);
 
-        if (branchesRes.status === 'fulfilled' && Array.isArray(branchesRes.value)) {
-          const branches = branchesRes.value;
-          setBranchCount(branches.length);
-          const totalPastors = branches.reduce(
+        if (branchesRes.status === 'fulfilled' && branchesRes.value) {
+          const { branches, total } = branchesRes.value;
+          setBranchCount(total || branches?.length || 0);
+          const totalPastors = (branches || []).reduce(
             (acc, b) => acc + (b.pastors?.length || 0),
             0
           );

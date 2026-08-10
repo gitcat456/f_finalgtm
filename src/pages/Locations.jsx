@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { branches as staticBranches } from '../data/branchesData';
 import { branchService } from '../admin/services/branchService';
 import BranchCard from '../components/BranchCard';
 import BranchCardSkeleton from '../components/skeletons/BranchCardSkeleton';
+import Pagination from '../components/Pagination';
 import { FadeIn } from '../components/skeletons/Skeleton';
-import childrenBg from '../assets/children.jpg';
 import { getOptimizedImageUrl } from '../utils/cloudinary';
 
 // Hero background — width 1920 (hero/background)
@@ -14,30 +14,56 @@ const HERO_BG_URL = getOptimizedImageUrl(
   1920
 );
 
+const PAGE_SIZE = 6;
+
 const BranchesPage = () => {
   const [branchesList, setBranchesList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalBranches, setTotalBranches] = useState(0);
+
+  const fetchBranches = useCallback(async (page = 1) => {
+    setLoading(true);
+    try {
+      const res = await branchService.getAllBranches({
+        page,
+        limit: PAGE_SIZE,
+        isPosted: true,
+      });
+
+      if (res.branches && res.branches.length > 0) {
+        setBranchesList(res.branches);
+        setTotalPages(res.totalPages || 1);
+        setTotalBranches(res.total || res.branches.length);
+      } else {
+        // Fall back to static data if DB is empty
+        const startIndex = (page - 1) * PAGE_SIZE;
+        const sliced = staticBranches.slice(startIndex, startIndex + PAGE_SIZE);
+        setBranchesList(sliced);
+        setTotalPages(Math.ceil(staticBranches.length / PAGE_SIZE));
+        setTotalBranches(staticBranches.length);
+      }
+    } catch {
+      // Fall back to static data if backend is offline
+      const startIndex = (page - 1) * PAGE_SIZE;
+      const sliced = staticBranches.slice(startIndex, startIndex + PAGE_SIZE);
+      setBranchesList(sliced);
+      setTotalPages(Math.ceil(staticBranches.length / PAGE_SIZE));
+      setTotalBranches(staticBranches.length);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    async function loadPublicBranches() {
-      setLoading(true);
-      try {
-        const fetched = await branchService.getAllBranches();
-        if (Array.isArray(fetched) && fetched.length > 0) {
-          const postedOnly = fetched.filter((b) => b.isPosted !== false);
-          setBranchesList(postedOnly.length > 0 ? postedOnly : fetched);
-        } else {
-          setBranchesList(staticBranches);
-        }
-      } catch {
-        // Fall back to static data if backend is offline
-        setBranchesList(staticBranches);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPublicBranches();
-  }, []);
+    fetchBranches(currentPage);
+  }, [currentPage, fetchBranches]);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 300, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-8">
@@ -77,7 +103,7 @@ const BranchesPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="mb-16 text-center">
+          <div className="mb-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4 tracking-tight">
               Our Locations
             </h2>
@@ -93,22 +119,33 @@ const BranchesPage = () => {
               ))}
             </div>
           ) : (
-            <FadeIn>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {branchesList.map((branch, index) => (
-                  <motion.div
-                    key={branch._id || branch.id || index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.1 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    {/* Public view — no admin props passed */}
-                    <BranchCard branch={branch} isAdmin={false} />
-                  </motion.div>
-                ))}
-              </div>
-            </FadeIn>
+            <>
+              <FadeIn>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {branchesList.map((branch, index) => (
+                    <motion.div
+                      key={branch._id || branch.id || index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      {/* Public view — no admin props passed */}
+                      <BranchCard branch={branch} isAdmin={false} />
+                    </motion.div>
+                  ))}
+                </div>
+              </FadeIn>
+
+              {/* Server-Side Pagination Controls (Max 6 per page) */}
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+                totalItems={totalBranches}
+                pageSize={PAGE_SIZE}
+              />
+            </>
           )}
 
           <div className="mt-16 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-3xl p-10 text-center border border-primary-100 shadow-sm relative overflow-hidden">
