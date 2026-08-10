@@ -5,6 +5,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import AdminLayout from '../layouts/AdminLayout';
 import LoginPage from '../pages/LoginPage';
 import DashboardHome from '../pages/DashboardHome';
+import VisitorAnalytics from '../pages/VisitorAnalytics';
 import BranchManagement from '../pages/BranchManagement';
 import EventManagement from '../pages/EventManagement';
 import PlaceholderPage from '../pages/PlaceholderPage';
@@ -30,6 +31,7 @@ export default function AdminRouter() {
             }
           >
             <Route index element={<DashboardHome />} />
+            <Route path="visitors" element={<VisitorAnalytics />} />
             <Route path="branches" element={<BranchManagement />} />
             <Route path="events" element={<EventManagement />} />
             <Route
