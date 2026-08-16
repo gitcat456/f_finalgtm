@@ -8,6 +8,8 @@ import DashboardHome from '../pages/DashboardHome';
 import VisitorAnalytics from '../pages/VisitorAnalytics';
 import BranchManagement from '../pages/BranchManagement';
 import EventManagement from '../pages/EventManagement';
+import FounderManagement from '../pages/FounderManagement';
+import ClergyManagement from '../pages/ClergyManagement';
 import PlaceholderPage from '../pages/PlaceholderPage';
 
 /**
@@ -34,10 +36,8 @@ export default function AdminRouter() {
             <Route path="visitors" element={<VisitorAnalytics />} />
             <Route path="branches" element={<BranchManagement />} />
             <Route path="events" element={<EventManagement />} />
-            <Route
-              path="clergy"
-              element={<PlaceholderPage title="Clergy Management" />}
-            />
+            <Route path="founders" element={<FounderManagement />} />
+            <Route path="clergy" element={<ClergyManagement />} />
             <Route
               path="settings"
               element={<PlaceholderPage title="Settings" />}
