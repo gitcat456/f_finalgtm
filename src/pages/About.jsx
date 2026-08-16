@@ -6,23 +6,23 @@ import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
 import vission from "../assets/vission.jpg";
 
-// Static Data
-const founders = [
-  {
-    id: 1,
-    name: "The Late Bishop Nathaniel Owiti",
-    role: "Founder",
-    img: pas, // Fallback image since p.James.jpg is missing
-    bio: "Bishop Nathaniel laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
-  }
+// Fallback initial data in case database is empty
+const initialFounders = [
+  // {
+  //   id: 1,
+  //   name: "The Late Bishop Nathaniel Owiti",
+  //   role: "Founder",
+  //   img: pas,
+  //   bio: "Bishop Nathaniel laid the spiritual foundation of GTM Ministries with a strong commitment to prayer and outreach."
+  // }
 ];
 
-const clergyMembers = [
+const initialClergy = [
   {
     id: 1,
     name: "Gibson Onunga",
     title: "Bishop",
-    bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation.",
+    bio: "With over 2g0 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation.",
     img: pas,
   },
   {
@@ -45,6 +45,41 @@ const AboutPage = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('mission');
 
+  const [founders, setFounders] = useState(initialFounders);
+  const [clergyMembers, setClergyMembers] = useState(initialClergy);
+
+  // Fetch Founders and Clergy members from backend API
+  useEffect(() => {
+    const API_BASE = import.meta.env.VITE_API_URL || 'https://ffinalgtm-production.up.railway.app/api';
+
+    const fetchAboutData = async () => {
+      try {
+        const [foundersRes, clergyRes] = await Promise.allSettled([
+          fetch(`${API_BASE}/founders`),
+          fetch(`${API_BASE}/clergy`),
+        ]);
+
+        if (foundersRes.status === 'fulfilled' && foundersRes.value.ok) {
+          const foundersData = await foundersRes.value.json();
+          if (foundersData.data?.founders && foundersData.data.founders.length > 0) {
+            setFounders(foundersData.data.founders);
+          }
+        }
+
+        if (clergyRes.status === 'fulfilled' && clergyRes.value.ok) {
+          const clergyData = await clergyRes.value.json();
+          if (clergyData.data?.clergy && clergyData.data.clergy.length > 0) {
+            setClergyMembers(clergyData.data.clergy);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching About data:', error);
+      }
+    };
+
+    fetchAboutData();
+  }, []);
+
   // Check URL hash on component mount and navigation to set active tab
   useEffect(() => {
     const hash = location.hash.replace('#', '');
@@ -61,10 +96,10 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-8">
       <div className="container mx-auto px-4 pb-16">
-        
+
         {/* Header and Tabs */}
         <div className="max-w-4xl mx-auto mb-16 text-center">
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-5xl font-bold text-primary-900 mb-6 tracking-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,7 +107,7 @@ const AboutPage = () => {
           >
             About Us
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -82,18 +117,17 @@ const AboutPage = () => {
             Our Sabbath services are a blend of traditional and contemporary worship songs and provide opportunity
             for prayer, praise, preaching of the Word and an altar time.
           </motion.p>
-          
+
           {/* Pill Tabs */}
           <div className="flex flex-wrap justify-center gap-3">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => handleSelect(tab.id)}
-                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 shadow-sm ${
-                  activeSection === tab.id 
-                    ? 'bg-primary-600 text-white shadow-md transform -translate-y-0.5' 
-                    : 'bg-white text-gray-600 hover:bg-primary-50 hover:text-primary-700 border border-gray-200'
-                }`}
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-200 shadow-sm ${activeSection === tab.id
+                  ? 'bg-primary-600 text-white shadow-md transform -translate-y-0.5'
+                  : 'bg-white text-gray-600 hover:bg-primary-50 hover:text-primary-700 border border-gray-200'
+                  }`}
                 aria-current={activeSection === tab.id ? 'page' : undefined}
               >
                 {tab.label}
@@ -104,7 +138,7 @@ const AboutPage = () => {
 
         {/* Tab Content area with transitions */}
         <AnimatePresence mode="wait">
-          
+
           {/* ─── Mission & Vision Section ────────────────────────────────────────── */}
           {activeSection === 'mission' && (
             <motion.div
@@ -119,9 +153,9 @@ const AboutPage = () => {
               <div className="flex flex-col md:flex-row items-center gap-10 mb-16">
                 <div className="md:w-1/2">
                   <div className="image-container shadow-xl border-8 border-white transform rotate-1">
-                    <img 
-                      src="https://t3.ftcdn.net/jpg/03/30/32/28/240_F_330322889_loyXDVKHBntIFBXuLT6LvqDxmHU9BzZn.jpg" 
-                      alt="Church Mission" 
+                    <img
+                      src="https://t3.ftcdn.net/jpg/03/30/32/28/240_F_330322889_loyXDVKHBntIFBXuLT6LvqDxmHU9BzZn.jpg"
+                      alt="Church Mission"
                       className="w-full h-80 object-cover"
                       loading="lazy"
                     />
@@ -148,14 +182,14 @@ const AboutPage = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Vision Section */}
               <div className="flex flex-col md:flex-row-reverse items-center gap-10 mb-16">
                 <div className="md:w-1/2">
                   <div className="image-container shadow-xl border-8 border-white transform -rotate-1">
-                    <img 
-                      src={vission} 
-                      alt="Church Vision" 
+                    <img
+                      src={vission}
+                      alt="Church Vision"
                       className="w-full h-80 object-cover"
                       loading="lazy"
                     />
@@ -183,7 +217,7 @@ const AboutPage = () => {
                 </div>
               </div>
             </motion.div>
-          )} 
+          )}
 
           {/* ─── Clergy Section ────────────────────────────────────────────────── */}
           {activeSection === 'clergy' && (
@@ -198,7 +232,7 @@ const AboutPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {clergyMembers.map((member, index) => (
                   <motion.div
-                    key={member.id}
+                    key={member._id || member.id}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
@@ -206,8 +240,8 @@ const AboutPage = () => {
                     className="card overflow-hidden group"
                   >
                     <div className="relative h-72 overflow-hidden">
-                      <img 
-                        src={member.img} 
+                      <img
+                        src={member.image || member.img || pas}
                         alt={member.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         loading="lazy"
@@ -215,12 +249,12 @@ const AboutPage = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-90"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
                         <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                        <p className="text-primary-300 font-medium">{member.title}</p>
+                        <p className="text-primary-300 font-medium">{member.title || member.role}</p>
                       </div>
                     </div>
                     <div className="p-6">
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        {member.bio}
+                        {member.bio || member.description}
                       </p>
                     </div>
                   </motion.div>
@@ -243,7 +277,7 @@ const AboutPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                 {founders.map((founder, index) => (
                   <motion.div
-                    key={founder.id}
+                    key={founder._id || founder.id}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
@@ -251,8 +285,8 @@ const AboutPage = () => {
                     className="card overflow-hidden group"
                   >
                     <div className="relative h-72 overflow-hidden">
-                      <img 
-                        src={founder.img} 
+                      <img
+                        src={founder.image || founder.img || pas}
                         alt={founder.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         loading="lazy"
@@ -260,12 +294,12 @@ const AboutPage = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-90"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
                         <h3 className="text-xl font-bold text-white leading-tight mb-1">{founder.name}</h3>
-                        <p className="text-secondary-300 font-medium">{founder.role}</p>
+                        <p className="text-secondary-300 font-medium">{founder.role || founder.title || "Founder"}</p>
                       </div>
                     </div>
                     <div className="p-6">
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        {founder.bio}
+                        {founder.bio || founder.description}
                       </p>
                     </div>
                   </motion.div>
@@ -273,7 +307,7 @@ const AboutPage = () => {
               </div>
 
               {/* Our Journey Timeline */}
-              <motion.div 
+              <motion.div
                 className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-3xl p-8 sm:p-12 shadow-sm border border-primary-100"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -282,7 +316,7 @@ const AboutPage = () => {
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-2xl sm:text-3xl font-bold text-primary-900 mb-10 text-center tracking-tight">Our Journey</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 lg:gap-8 relative">
-                    
+
                     {/* Connecting line for desktop */}
                     <div className="hidden md:block absolute top-6 left-[15%] right-[15%] h-0.5 bg-primary-200"></div>
 
