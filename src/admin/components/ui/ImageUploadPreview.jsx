@@ -12,7 +12,7 @@ export default function ImageUploadPreview({
   aspectRatio = '16/9',
   hintText = 'PNG, JPG, WEBP up to 5MB',
   compact = false,
-  maxHeight = null,  // e.g. '120px' for compact banner preview
+  maxHeight = '180px',
 }) {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -80,11 +80,17 @@ export default function ImageUploadPreview({
         <div
           className="admin-image-preview-card"
           style={{
-            aspectRatio: compact ? '1/1' : aspectRatio,
-            ...(maxHeight ? { maxHeight, aspectRatio: 'unset' } : {}),
+            maxHeight: maxHeight || '180px',
+            height: maxHeight || '180px',
+            width: '100%',
           }}
         >
-          <img src={activeImage} alt="Preview" className="admin-image-preview-img" />
+          <img
+            src={activeImage}
+            alt="Preview"
+            className="admin-image-preview-img"
+            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+          />
           <div className="admin-image-preview-overlay">
             <span className="preview-badge">
               {selectedFile ? 'New Selection' : 'Current Image'}
@@ -117,8 +123,10 @@ export default function ImageUploadPreview({
         <div
           className={`admin-image-dropzone ${isDragging ? 'dragging' : ''}`}
           style={{
-            aspectRatio: compact ? '1/1' : aspectRatio,
-            ...(maxHeight ? { maxHeight, aspectRatio: 'unset', minHeight: '80px' } : {}),
+            maxHeight: maxHeight || '180px',
+            height: maxHeight || '180px',
+            minHeight: '120px',
+            width: '100%',
           }}
           onClick={triggerInput}
           onDrop={handleDrop}
@@ -126,9 +134,9 @@ export default function ImageUploadPreview({
           onDragLeave={handleDragLeave}
         >
           <div className="dropzone-icon">
-            <CloudUploadIcon fontSize={compact ? 'medium' : 'large'} />
+            <CloudUploadIcon fontSize="medium" />
           </div>
-          <div className="dropzone-text">
+          <div className="dropzone-text" style={{ fontSize: '0.85rem' }}>
             <span className="highlight font-semibold">Click to upload</span> or drag and drop
           </div>
           {hintText && <div className="dropzone-hint">{hintText}</div>}
