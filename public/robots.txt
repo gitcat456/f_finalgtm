@@ -1,23 +1,22 @@
-# SEO Configuration for Grace and Truth Ministries
+# SEO Configuration for Grace and Truth Ministries (GTM Church)
+# Production Domain: https://gtmchurch.co.ke
 
-# Allow all crawlers
 User-agent: *
 Allow: /
-
-# Disallow sensitive paths
 Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
+Disallow: /media-control
 Disallow: /*.json$
 Disallow: /sw.js
-
-# Sitemap location
-Sitemap: https://graceandtruthministries.com/sitemap.xml
-
-# Crawl delay (be nice to servers)
-Crawl-delay: 1
 
 # Specific rules for Googlebot
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /media-control
+
+# Sitemap Location
+Sitemap: https://gtmchurch.co.ke/sitemap.xml
