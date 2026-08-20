@@ -60,7 +60,7 @@ const Logo = React.memo(() => (
       >
         <img
           src={off_logo}
-          alt="GTM Logo"
+          alt="Grace and Truth Ministries (GTM Church) Logo"
           loading="eager"
           width={48}
           height={48}

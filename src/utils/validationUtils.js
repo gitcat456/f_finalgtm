@@ -70,7 +70,7 @@ export const validatePhoneNumber = (phone) => {
  */
 export const sanitizeNameInput = (rawVal) => {
   if (!rawVal) return '';
-  return String(rawVal).replace(/[^a-zA-Z\s'\-]/g, '').slice(0, 80);
+  return String(rawVal).replace(/[^a-zA-Z\s'-]/g, '').slice(0, 80);
 };
 
 /**
