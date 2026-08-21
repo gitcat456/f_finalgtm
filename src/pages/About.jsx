@@ -5,6 +5,21 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import pas from "../assets/Bishop.webp";
 import past from "../assets/p.Rose.png";
 import vission from "../assets/vission.jpg";
+import SEO from '../components/SEO';
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "url": "https://gtmchurch.co.ke/about",
+  "name": "About Us | Grace and Truth Ministries",
+  "description": "Learn about the mission, vision, history, founders, and clergy leadership of Grace and Truth Ministries (GTM Church), registered in Kenya in 2003.",
+  "publisher": {
+    "@type": "Church",
+    "name": "Grace and Truth Ministries",
+    "url": "https://gtmchurch.co.ke",
+    "logo": "https://res.cloudinary.com/dyy3aepmu/image/upload/v1785606828/off_logo_dz4tio.png"
+  }
+};
 
 // Fallback initial data in case database is empty
 const initialFounders = [
@@ -22,7 +37,7 @@ const initialClergy = [
     id: 1,
     name: "Gibson Onunga",
     title: "Bishop",
-    bio: "With over 2g0 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation.",
+    bio: "With over 20 years of pastoral experience, Bishop Gibson brings wisdom and compassion to our congregation.",
     img: pas,
   },
   {
@@ -95,6 +110,13 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-8">
+      <SEO
+        title="About Us | Grace and Truth Ministries (GTM Church)"
+        description="Discover the history, mission, vision, founders, and clergy leadership of Grace and Truth Ministries (GTM Church), registered in Kenya in 2003."
+        canonical="https://gtmchurch.co.ke/about"
+        schema={aboutSchema}
+      />
+
       <div className="container mx-auto px-4 pb-16">
 
         {/* Header and Tabs */}

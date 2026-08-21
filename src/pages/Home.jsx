@@ -5,12 +5,70 @@ import home from '../assets/home.avif';
 import { Link } from "react-router-dom";
 import WeAreLiveBanner from '../components/WeAreLiveBanner';
 import { getOptimizedImageUrl } from '../utils/cloudinary';
+import SEO from '../components/SEO';
 
 // Hero background — width 1920 (hero/background)
 const HERO_BG_URL = getOptimizedImageUrl(
   'https://res.cloudinary.com/dyy3aepmu/image/upload/v1785149468/home_ciuqs7.jpg',
   1920
 );
+
+const homeSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "@id": "https://gtmchurch.co.ke/#church",
+    "name": "Grace and Truth Ministries",
+    "alternateName": ["GTM Church", "Grace & Truth Ministries Kenya"],
+    "url": "https://gtmchurch.co.ke",
+    "logo": "https://res.cloudinary.com/dyy3aepmu/image/upload/v1785606828/off_logo_dz4tio.png",
+    "image": "https://res.cloudinary.com/dyy3aepmu/image/upload/v1785149468/home_ciuqs7.jpg",
+    "description": "Grace and Truth Ministries (GTM Church) is a Pentecostal church dedicated to worship, prayer, biblical teaching, and community fellowship in Mathare, Nairobi, Kenya.",
+    "telephone": "+254717508987",
+    "email": "graceandtruthministries2003@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Mathare 4A",
+      "addressLocality": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=100064719998736",
+      "https://www.youtube.com/@graceandtruthministriesglobal",
+      "https://chat.whatsapp.com/JJnmLEur8OyKkFWOS6tDY8"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:30",
+        "closes": "13:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Wednesday",
+        "opens": "18:00",
+        "closes": "19:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Friday",
+        "opens": "18:00",
+        "closes": "19:30"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://gtmchurch.co.ke/#website",
+    "url": "https://gtmchurch.co.ke",
+    "name": "Grace and Truth Ministries",
+    "publisher": {
+      "@id": "https://gtmchurch.co.ke/#church"
+    }
+  }
+];
 
 // Shared animation variants
 const fadeSlideUp = {
@@ -146,6 +204,14 @@ const Home = () => {
 
   return (
     <>
+      <SEO
+        title="Grace and Truth Ministries | Pentecostal Church in Nairobi, Kenya"
+        description="Welcome to Grace and Truth Ministries (GTM Church). Join our Saturday Sabbath worship services, Bible study, and youth fellowship in Mathare, Nairobi, and branches countrywide."
+        canonical="https://gtmchurch.co.ke/"
+        ogImage={HERO_BG_URL}
+        schema={homeSchema}
+      />
+
       {/* Hero Section with optimized background image - Parallax removed for iOS Safari performance */}
       <section
         className="hero-section bg-center bg-cover relative text-white px-4"
