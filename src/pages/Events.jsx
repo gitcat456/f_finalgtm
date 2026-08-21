@@ -6,6 +6,60 @@ import { motion } from 'framer-motion';
 import { EventsPageSkeleton } from '../components/skeletons/PageSkeletons';
 import { FadeIn } from '../components/skeletons/Skeleton';
 import { getOptimizedImageUrl } from '../utils/cloudinary';
+import SEO from '../components/SEO';
+
+const eventsSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Youth Conference 2025: Living in Purpose",
+    "startDate": "2025-03-15",
+    "endDate": "2025-03-17",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Grace and Truth Ministries Main Sanctuary",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mathare 4A",
+        "addressLocality": "Nairobi",
+        "addressCountry": "KE"
+      }
+    },
+    "description": "Empowering young believers to discover their God-given purpose and live impactful Christian lives in the modern world.",
+    "organizer": {
+      "@type": "Organization",
+      "name": "Grace and Truth Ministries",
+      "url": "https://gtmchurch.co.ke"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Camp Meeting 2025: Let The Wind Blow",
+    "startDate": "2025-08-10",
+    "endDate": "2025-08-16",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Grace and Truth Ministries",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mathare 4A",
+        "addressLocality": "Nairobi",
+        "addressCountry": "KE"
+      }
+    },
+    "description": "Guided by Ezekiel 37:9, a gathering where dry bones live again and spiritual renewal transforms lives and communities.",
+    "organizer": {
+      "@type": "Organization",
+      "name": "Grace and Truth Ministries",
+      "url": "https://gtmchurch.co.ke"
+    }
+  }
+];
 
 // Static Data Moved Outside Component
 const EVENTS_DATA = [
@@ -125,6 +179,12 @@ const Event = () => {
 
   return (
     <FadeIn>
+      <SEO
+        title="Church Events & Conferences | Grace and Truth Ministries"
+        description="Discover upcoming church events, annual youth conferences, camp meetings, and thanksgiving services at Grace and Truth Ministries in Kenya."
+        canonical="https://gtmchurch.co.ke/events"
+        schema={eventsSchema}
+      />
       <div className="section-container bg-gray-50/50 min-h-screen pt-8">
       <div className="content-container">
         
