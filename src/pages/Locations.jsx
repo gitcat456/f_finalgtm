@@ -7,12 +7,64 @@ import BranchCardSkeleton from '../components/skeletons/BranchCardSkeleton';
 import Pagination from '../components/Pagination';
 import { FadeIn } from '../components/skeletons/Skeleton';
 import { getOptimizedImageUrl } from '../utils/cloudinary';
+import SEO from '../components/SEO';
 
 // Hero background — width 1920 (hero/background)
 const HERO_BG_URL = getOptimizedImageUrl(
   'https://res.cloudinary.com/dyy3aepmu/image/upload/v1785607208/children_jghb1y.jpg',
   1920
 );
+
+const locationsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Grace and Truth Ministries Church Locations & Branches in Kenya",
+  "description": "Find a Grace and Truth Ministries (GTM Church) location near you in Nairobi, Kisumu, Homabay, Kendu Bay, and across Kenya.",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Church",
+        "name": "Mathare Church (Main Branch)",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mathare 4A",
+          "addressLocality": "Nairobi",
+          "addressCountry": "KE"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Church",
+        "name": "Kisumu Branch",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Nyamasaria",
+          "addressLocality": "Kisumu",
+          "addressCountry": "KE"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Church",
+        "name": "Oriang Church",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Oriang, Kendu Bay",
+          "addressLocality": "Homa Bay",
+          "addressCountry": "KE"
+        }
+      }
+    }
+  ]
+};
 
 const PAGE_SIZE = 6;
 
@@ -67,6 +119,13 @@ const BranchesPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-8">
+      <SEO
+        title="Church Locations & Branches in Kenya | Grace and Truth Ministries"
+        description="Find a Grace and Truth Ministries (GTM Church) branch near you in Nairobi, Kisumu, Homabay, Kendu Bay, and across Kenya. Saturday Sabbath service locations."
+        canonical="https://gtmchurch.co.ke/locations"
+        schema={locationsSchema}
+      />
+
       {/* Hero Section */}
       <div className="relative py-20 md:py-24 overflow-hidden rounded-b-3xl mb-12 shadow-sm">
         <div className="absolute inset-0 z-0">
