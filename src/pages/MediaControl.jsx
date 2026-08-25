@@ -29,6 +29,7 @@ import {
 } from '@mui/icons-material';
 import useLiveStream from '../hooks/useLiveStream';
 import WeAreLiveBanner from '../components/WeAreLiveBanner';
+import SEO from '../components/SEO';
 
 const PRESET_YOUTUBE = 'https://www.youtube.com/@graceandtruthministriesglobal/live';
 const PRESET_FACEBOOK = 'https://www.facebook.com/profile.php?id=100064719998736';
@@ -95,6 +96,13 @@ const MediaControl = () => {
 
   return (
     <Box sx={{ py: 6, bgcolor: 'grey.50', minHeight: '85vh' }}>
+      <SEO
+        title="Media Team Live Control | Grace and Truth Ministries"
+        description="Internal live stream broadcast controls for Grace and Truth Ministries media team."
+        canonical="https://gtmchurch.co.ke/media-control"
+        noindex={true}
+        nofollow={true}
+      />
       <Container maxWidth="lg">
         {/* Header */}
         <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
