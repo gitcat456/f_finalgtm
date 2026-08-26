@@ -1,10 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const NotFound = () => {
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 px-4 py-16">
+      <SEO
+        title="Page Not Found | Grace and Truth Ministries"
+        description="The requested page could not be found on Grace and Truth Ministries."
+        canonical="https://gtmchurch.co.ke/404"
+        noindex={true}
+        nofollow={false}
+      />
       <motion.div 
         className="text-center max-w-lg"
         initial={{ opacity: 0, y: 20 }}

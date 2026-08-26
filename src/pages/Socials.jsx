@@ -3,6 +3,25 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import praiseBg from '../assets/praise.png';
 import { getOptimizedImageUrl } from '../utils/cloudinary';
+import SEO from '../components/SEO';
+
+const socialsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Connect & Social Links | Grace and Truth Ministries",
+  "description": "Connect with Grace and Truth Ministries (GTM Church) on Facebook, YouTube live streams, and official WhatsApp fellowship groups.",
+  "url": "https://gtmchurch.co.ke/gtm_socials",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Grace and Truth Ministries",
+    "url": "https://gtmchurch.co.ke",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=100064719998736",
+      "https://www.youtube.com/@graceandtruthministriesglobal",
+      "https://chat.whatsapp.com/JJnmLEur8OyKkFWOS6tDY8"
+    ]
+  }
+};
 
 // Hero background — width 1920 (hero/background)
 const HERO_BG_URL = getOptimizedImageUrl(
@@ -85,6 +104,12 @@ const SocialsPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-8">
+      <SEO
+        title="Connect & Social Links | Grace and Truth Ministries"
+        description="Connect with Grace and Truth Ministries (GTM Church) on Facebook, YouTube live streams, and official WhatsApp fellowship groups."
+        canonical="https://gtmchurch.co.ke/gtm_socials"
+        schema={socialsSchema}
+      />
       {/* Hero Section */}
       <div className="relative py-20 md:py-24 overflow-hidden rounded-b-3xl mb-12 shadow-sm">
         <div className="absolute inset-0 z-0">
